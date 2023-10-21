@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/colors.css">
+    <!--  -->
+    <!-- <link rel="stylesheet" href="css/fractals.css"> -->
+
+    <title>ШТУКА - Створюй світ за власними правилами</title>
+</head>
+
+<body>
+    <div class="page-container">
+        <header class="header-footer">
+            <text class="logo">
+                <a href="index.html"><b>ШТУКА</b></a>
+            </text>
+        </header>
+
+        <main class="main">
+            <nav class="navigation">
+                <section class="top-nav-side colors-nav">
+                    <a href="index.html" class="svg-button-container">
+                        <?xml version="1.0" encoding="utf-8"?>
+                        <svg width="3.5rem" class="svg-button" viewBox="2 2 20 30" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M11 9L8 12M8 12L11 15M8 12H16M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                                stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                    <label for="open-image" class="button colors-button" id="label-for-open-image">Обрати
+                        зображення</label>
+                    <input type="file" id="open-image" accept="image/*" style="display: none">
+
+                </section>
+                <section class="top-nav-side colors-nav">
+                    <button type="button" class="button colors-button" id="save-image">
+                        Зберегти як зображення
+                    </button>
+                    <div class="svg-button-container" id="colors-help-button">
+                        <?xml version="1.0" encoding="utf-8"?>
+                        <svg width="3.5rem" class="svg-button" viewBox="2 2 20 30" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M11.967 12.75C12.967 11.75 13.967 11.3546 13.967 10.25C13.967 9.14543 13.0716 8.25 11.967 8.25C11.0351 8.25 10.252 8.88739 10.03 9.75M11.967 15.75H11.977M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                                stroke="#000000" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                </section>
+            </nav>
+            <section class="section-main-part-container">
+                <article class="parameters-container colors-parameters">
+                    <section id="colors-parameters">
+                        <div class="slider-parameter-description">
+                            <text class="parameter-description">
+                                Освітленність червоного
+                            </text>
+                            <text class="slider-value" id="colors-value">
+                                50
+                            </text>
+                        </div>
+                        <div class="slider-container">
+                            <input type="range" min="0" max="100" value="50" class="slider red" id="colors-slider">
+                        </div>
+                    </section>
+                    <section id="colors-parameters" class="rgb">
+                        <text id="rgb">
+                            RGB: (0, 0, 0)
+                        </text>
+                    </section>
+                    <section id="colors-parameters" class="hsl">
+                        <text id="hsl">
+                            HSL: (0°, 0%, 0%)
+                        </text>
+                    </section>
+                </article>
+
+                <div class="canvas" id="canvas">
+                    <img src="./img/start.jpg" class="edited-picture" id="picture" alt="oleksa novakivskyi's painting">
+                </div>
+            </section>
+        </main>
+
+        <footer class="header-footer footer">
+            <a href="./fractals.html" class="footer-text">
+                Фрактали
+            </a>
+            <a href="./colors.html" class="footer-text">
+                <b>Колірні моделі</b>
+            </a>
+            <a href="./geometry.html" class="footer-text">
+                Геометричний рух
+            </a>
+        </footer>
+    </div>
+    <script src="./js/jimp.min.js"></script>
+    <script src="./js/ColorsManager.js"></script>
+    <script src="./js/colors.js"></script>
+
+
+    <!-- <script src="./js/p5.min.js"></script>
+    <script src="./js/point.js"></script>
+    <script src="./js/stroke.js"></script>
+    <script src="./js/DragonCurve.js"></script>
+    <script src="./js/JuliaFractal.js"></script>
+    <script src="./js/ColorsManager.js"></script>
+    <script src="./js/fractals.js"></script> -->
+</body>
+
+</html>
