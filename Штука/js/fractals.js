@@ -114,9 +114,7 @@ imaginary.addEventListener('input', (event) => {
 
 document.getElementsByClassName('random-button')[0].addEventListener('click', () => {
     [real.value, imaginary.value] = juliaFractal.getRandomValues()
-    console.log(real.value, imaginary.value);
     clearCanvas();
-
 })
 
 

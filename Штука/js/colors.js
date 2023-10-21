@@ -73,8 +73,7 @@ document.getElementById('save-image').addEventListener('click', () => {
 picture.addEventListener('click', (e) => {
     let x
     let y
-    // console.dir(e)
-    // console.dir(e.target)
+
     if ((e.target.naturalHeight / e.target.naturalWidth) > (e.target.parentNode.offsetHeight / e.target.parentNode.offsetWidth))
         [x, y] = [(e.x - (e.target.parentNode.offsetWidth - e.target.naturalWidth / (e.target.naturalHeight / e.target.parentNode.offsetHeight)) / 2 - e.target.parentNode.offsetLeft - 9), (e.y - e.target.offsetTop)]
     else if ((e.target.naturalHeight / e.target.naturalWidth) < (e.target.parentNode.offsetHeight / e.target.parentNode.offsetWidth))
@@ -84,8 +83,7 @@ picture.addEventListener('click', (e) => {
 
     x = Math.ceil(x * e.target.naturalWidth / e.target.offsetWidth)
     y = Math.ceil(y * e.target.naturalHeight / e.target.offsetHeight)
-    console.log(x)
-    console.log(y)
+
     setPixelsInfo(Jimp.intToRGBA(resultPhoto.getPixelColor(x, y)))
 })
 
