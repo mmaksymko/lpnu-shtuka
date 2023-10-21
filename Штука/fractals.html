@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/fractals.css">
-
-    <title>ШТУКА - Створюй світ за власними правилами</title>
+    <title>Фрактали на ШТУЦІ</title>
 </head>
 
 <body>
@@ -21,7 +20,7 @@
         <main class="main fractals-main">
             <nav class="navigation">
                 <section class="top-nav-side">
-                    <a href="index.html" class="svg-button-container">
+                    <a href="index.html" class="svg-button-container" title="Повернутись до початкової сторінки">
                         <?xml version="1.0" encoding="utf-8"?>
                         <svg width="3.5rem" class="svg-button" viewBox="2 2 20 30" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -29,15 +28,17 @@
                                 stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </a>
-                    <button type="button" class="toggle-button active" id="dragon-curve-button">
+                    <button type="button" class="toggle-button active" id="dragon-curve-button"
+                        title="Перейти до підсекції ґенерації кривої дракона">
                         Крива дракона
                     </button>
                 </section>
                 <section class="top-nav-side">
-                    <button type="button" class="toggle-button" id="julia-fractal-button">
+                    <button type="button" class="toggle-button" id="julia-fractal-button"
+                        title="Перейти до підсекції ґенерації фрактала Жюлія">
                         Фрактал Жюлія
                     </button>
-                    <div class="svg-button-container" id="fractal-help-button">
+                    <div class="svg-button-container" id="fractal-help-button" title="Дізнатись інформацію про фрактал">
                         <?xml version="1.0" encoding="utf-8"?>
                         <svg width="3.5rem" class="svg-button" viewBox="2 2 20 30" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -58,7 +59,8 @@
                                 8
                             </text>
                         </div>
-                        <div class="slider-container">
+                        <div class="slider-container"
+                            title="Кількість ітерацій - кількість подвоєнь з поворотом сеґментів фрактала">
                             <input type="range" min="1" max="15" value="8" class="slider" id="dragonSlider">
                         </div>
                     </section>
@@ -71,12 +73,13 @@
                             </text>
                         </div>
                         <div class="input-container parameter-input-container">
-                            <input type="number" name="constant-real" id="julia-constant-real" placeholder="-0.8">
+                            <input type="number" name="constant-real" id="julia-constant-real" placeholder="-0.8"
+                                title="Реальна частина параметра фрактала Жюлія">
                             <text>+</text>
                             <input type="number" name="constant-imaginary" id="julia-constant-imaginary"
-                                placeholder="0.156">
+                                placeholder="0.156" title="Комплексна частина параметра фрактала Жюлія">
                             <text>i</text>
-                            <div class="random-button" title="Ґенерує відомий приклад множини Жюлія">
+                            <div class="random-button" title="Зґенерувати відомий приклад множини Жюлія">
                                 <svg width="2.25rem" fill="none" viewBox="2 2 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <g>
                                         <path
@@ -106,7 +109,7 @@
                                 100
                             </text>
                         </div>
-                        <div class="slider-container">
+                        <div class="slider-container" title=" Обрати масштаб фракталу у відсотках">
                             <input type="range" min="-300" max="-10" value="-190" class="slider" id="juliaSlider">
                         </div>
                         <div class="slider-parameter-description">
@@ -115,7 +118,8 @@
                             </text>
                         </div>
                         <div class="input-container parameter-input-container">
-                            <input type="color" name="primary-color" id="julia-primary-color" value="#f6b73c">
+                            <input type="color" name="primary-color" id="julia-primary-color" value="#f6b73c"
+                                title="Обрати основний колір">
                             <select class="select-box" name="color-scheme" id="color-scheme-select">
                                 <option value="complementary">Комплементарні</option>
                                 <option value="split-complementary">Роздільно комплементарні</option>
@@ -124,7 +128,7 @@
                         </div>
 
                     </section>
-                    <button type="button" class="button save-fractal">
+                    <button type="button" class="button save-fractal" text="Зберегти зґенерований фрактал на пристрої">
                         Зберегти як зображення
                     </button>
 
@@ -136,25 +140,25 @@
         </main>
 
         <footer class="header-footer footer">
-            <a href="./fractals.html" class="footer-text">
+            <a href="./fractals.html" class="footer-text" title="Перейти до секції ґенерації фракталів">
                 <b>Фрактали</b>
             </a>
-            <a href="./colors.html" class="footer-text">
+            <a href="./colors.html" class="footer-text" title="Перейти до секції колірних моделей">
                 Колірні моделі
             </a>
-            <a href="./geometry.html" class="footer-text">
+            <a href="./geometry.html" class="footer-text" title="Перейти до секції Геометричних перетворень">
                 Геометричний рух
             </a>
         </footer>
     </div>
 
-    <!-- секція з довідкою про криву дракона, спершу схована -->
-    <div class="page-container help-container dragon-help-container" style="display: none;">
+    <!-- секція з довідкою про фрактали, спершу схована -->
+    <div class="page-container help-container" style="display: none;">
         <header class="header-footer help-header">
-            <text class="logo">
+            <text class="logo" title="ШТУКА навчає не лише візуально, а й дає трішки теорії!">
                 <a href="index.html"><b>ШТУКА-ПОМІЧНА</b></a>
             </text>
-            <div class="svg-button-container" id="exit-dragon-help-button">
+            <div class="svg-button-container" id="exit-dragon-help-button" title="Повернутись до ґенерації фракталів">
                 <svg width="3.5rem" class="svg-button exit-help-button" viewBox="2 2 20 30"
                     xmlns="http://www.w3.org/2000/svg">
                     <g>
@@ -168,11 +172,10 @@
                     </g>
                 </svg>
             </div>
-
         </header>
 
         <!-- секція з довідкою про фрактал дракона, спершу схована -->
-        <main class="main fractals-main help-main">
+        <main class="main fractals-main help-main dragon-help-container" style="display: none;">
             <text>
                 <b>Крива дракона</b> <i>(також відома як фрактал <b>Гартера-Гейвея</b>)</i> - фрактал, який зображається
                 наступним чином: починаючи з <b>базового сегмента</b>, кожен сегмент <b>замінюється</b> двома сегментами
@@ -189,39 +192,8 @@
             </div>
         </main>
 
-        <footer class="header-footer footer help-footer">
-            <span>
-                Хочете дізнатись більше інформації про фрактал? <b><u><a
-                            href="https://larryriddle.agnesscott.org/ifs/heighway/heighway.htm">Тисніть!</a></u></b>
-            </span>
-        </footer>
-    </div>
-
-
-    <!-- секція з довідкою про фрактал жюлія, спершу схована -->
-    <div class="page-container help-container julia-help-container" style="display: none;">
-        <header class="header-footer help-header">
-            <text class="logo">
-                <a href="index.html"><b>ШТУКА-ПОМІЧНА</b></a>
-            </text>
-            <div class="svg-button-container" id="exit-julia-help-button">
-                <svg width="3.5rem" class="svg-button exit-help-button" viewBox="2 2 20 30"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <g>
-                        <path id="svg_1" stroke-linejoin="round" stroke-linecap="round" stroke-width="2"
-                            stroke="#000000"
-                            d="m21,12c0,4.9706 -4.0294,9 -9,9c-4.97056,0 -9,-4.0294 -9,-9c0,-4.97056 4.02944,-9 9,-9c4.9706,0 9,4.02944 9,9z" />
-                        <g>
-                            <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#000000"
-                                d="m9.5,9.4185l5,5m0,-5l-5,5" />
-                        </g>
-                    </g>
-                </svg>
-            </div>
-
-        </header>
-
-        <main class="main fractals-main help-main julia-set-main">
+        <!-- секція з довідкою про фрактал жюлія, спершу схована -->
+        <main class="main fractals-main help-main julia-set-main julia-help-container" style="display: none;">
             <text>
                 <b>Множини Жюлія</b> є надмножиною <b>множин Мандельброта</b>, перетином яких є всі нероздільні
                 результати Жюлія. Ґенеруються вони також схожим способом до множини Мандельброта, проте в формулі
@@ -249,9 +221,6 @@
                             сюди)</a></u></b> 
             </span>
         </footer>
-
-
-
     </div>
 
     <script src="./js/p5.min.js"></script>

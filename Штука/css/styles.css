@@ -156,6 +156,11 @@ button {
 .parameters-container>section,
 .canvas {
     border: 3px solid var(--border-color);
+}
+
+.parameters-container>section,
+.canvas,
+canvas {
     border-radius: 1rem;
 }
 
@@ -221,7 +226,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-height: 440px;
+    max-height: 60vh;
     padding: 0.25rem;
 }
 

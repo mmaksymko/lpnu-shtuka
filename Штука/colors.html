@@ -6,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/colors.css">
-    <!--  -->
-    <!-- <link rel="stylesheet" href="css/fractals.css"> -->
-
-    <title>ШТУКА - Створюй світ за власними правилами</title>
+    <title>Колірні схеми на ШТУЦІ</title>
 </head>
 
 <body>
@@ -23,7 +20,7 @@
         <main class="main">
             <nav class="navigation">
                 <section class="top-nav-side colors-nav">
-                    <a href="index.html" class="svg-button-container">
+                    <a href="index.html" class="svg-button-container" title="Повернутись до початкової сторінки">
                         <?xml version="1.0" encoding="utf-8"?>
                         <svg width="3.5rem" class="svg-button" viewBox="2 2 20 30" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -31,16 +28,19 @@
                                 stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </a>
-                    <label for="open-image" class="button colors-button" id="label-for-open-image">Обрати
+                    <label for="open-image" class="button colors-button" id="label-for-open-image"
+                        title="Завантажити зображення з пристрою">Обрати
                         зображення</label>
                     <input type="file" id="open-image" accept="image/*" style="display: none">
 
                 </section>
                 <section class="top-nav-side colors-nav">
-                    <button type="button" class="button colors-button" id="save-image">
+                    <button type="button" class="button colors-button" id="save-image"
+                        title="Зберегти зображення в пам'яті пристрою">
                         Зберегти як зображення
                     </button>
-                    <div class="svg-button-container" id="colors-help-button">
+                    <div class="svg-button-container" id="colors-help-button"
+                        title="Дізнатись інформацію про колірні схеми">
                         <?xml version="1.0" encoding="utf-8"?>
                         <svg width="3.5rem" class="svg-button" viewBox="2 2 20 30" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -52,7 +52,7 @@
             </nav>
             <section class="section-main-part-container">
                 <article class="parameters-container colors-parameters">
-                    <section id="colors-parameters">
+                    <section>
                         <div class="slider-parameter-description">
                             <text class="parameter-description">
                                 Освітленність червоного
@@ -61,36 +61,36 @@
                                 50
                             </text>
                         </div>
-                        <div class="slider-container">
+                        <div class="slider-container" title="100 - білий, 0 - чорний, 50 - початковий колір">
                             <input type="range" min="0" max="100" value="50" class="slider red" id="colors-slider">
                         </div>
                     </section>
-                    <section id="colors-parameters" class="rgb">
+                    <section class="rgb" title="RGB значення обраного піксела. Для визначення натисніть на зображення.">
                         <text id="rgb">
                             RGB: (0, 0, 0)
                         </text>
                     </section>
-                    <section id="colors-parameters" class="hsl">
+                    <section class="hsl" title="HSL значення обраного піксела. Для визначення натисніть на зображення.">
                         <text id="hsl">
                             HSL: (0°, 0%, 0%)
                         </text>
                     </section>
                 </article>
 
-                <div class="canvas" id="canvas">
-                    <img src="./img/start.jpg" class="edited-picture" id="picture" alt="oleksa novakivskyi's painting">
+                <div class="canvas" id="canvas" title="Натисніть на зображення, аби визначити колір піксела">
+                    <img src="./img/start.jpg" class="edited-picture" id="picture" alt="picture">
                 </div>
             </section>
         </main>
 
         <footer class="header-footer footer">
-            <a href="./fractals.html" class="footer-text">
+            <a href="./fractals.html" class="footer-text" title="Перейти до секції ґенерації фракталів">
                 Фрактали
             </a>
-            <a href="./colors.html" class="footer-text">
+            <a href="./colors.html" class="footer-text" title="Перейти до секції колірних моделей">
                 <b>Колірні моделі</b>
             </a>
-            <a href="./geometry.html" class="footer-text">
+            <a href="./geometry.html" class="footer-text" title="Перейти до секції Геометричних перетворень">
                 Геометричний рух
             </a>
         </footer>
@@ -98,15 +98,6 @@
     <script src="./js/jimp.min.js"></script>
     <script src="./js/ColorsManager.js"></script>
     <script src="./js/colors.js"></script>
-
-
-    <!-- <script src="./js/p5.min.js"></script>
-    <script src="./js/point.js"></script>
-    <script src="./js/stroke.js"></script>
-    <script src="./js/DragonCurve.js"></script>
-    <script src="./js/JuliaFractal.js"></script>
-    <script src="./js/ColorsManager.js"></script>
-    <script src="./js/fractals.js"></script> -->
 </body>
 
 </html>

@@ -129,21 +129,22 @@ document.getElementById('color-scheme-select').addEventListener('change', (event
 })
 
 
+let footer = document.getElementsByClassName('help-footer')[0].childNodes[1]
 document.getElementById('fractal-help-button').addEventListener('click', () => {
     document.getElementsByClassName('page-container')[0].style.display = 'none'
+    document.getElementsByClassName('help-container')[0].style.display = 'flex'
     if (isDragon) {
         document.getElementsByClassName('dragon-help-container')[0].style.display = 'flex'
+        footer.innerHTML = 'Хочете дізнатись більше інформації про фрактал? <b><u><a href="https://larryriddle.agnesscott.org/ifs/heighway/heighway.htm">Тисніть!</a></u></b>'
     } else {
         document.getElementsByClassName('julia-help-container')[0].style.display = 'flex'
+        footer.innerHTML = ' Хочете дізнатись більше інформації про фрактал? <b><u><a href="hhttps://fractalsaco.weebly.com/julia-set.html">Тисніть!</a></u></b> (або <b><u><a href="https://pi.math.cornell.edu/~klindsey/presentations/MandelbrotReport.pdf"> сюди)</a></u></b> '
     }
 })
 
 document.getElementById('exit-dragon-help-button').addEventListener('click', () => {
     document.getElementsByClassName('page-container')[0].style.display = 'flex'
+    document.getElementsByClassName('help-container')[0].style.display = 'none'
     document.getElementsByClassName('dragon-help-container')[0].style.display = 'none'
-})
-
-document.getElementById('exit-julia-help-button').addEventListener('click', () => {
-    document.getElementsByClassName('page-container')[0].style.display = 'flex'
     document.getElementsByClassName('julia-help-container')[0].style.display = 'none'
 })
