@@ -87,30 +87,6 @@ picture.addEventListener('click', (e) => {
     console.log(x)
     console.log(y)
     setPixelsInfo(Jimp.intToRGBA(resultPhoto.getPixelColor(x, y)))
-
-    /*  if ((e.target.naturalHeight / e.target.naturalWidth) > (e.target.parentNode.offsetHeight / e.target.parentNode.offsetWidth))
-          [x, y] = [(e.x - (e.target.parentNode.offsetWidth - e.target.naturalWidth / (e.target.naturalHeight / e.target.parentNode.offsetHeight)) / 2 - e.target.parentNode.offsetLeft - 9), (e.y - e.target.offsetTop)]
-      else if ((e.target.naturalHeight / e.target.naturalWidth) < (e.target.parentNode.offsetHeight / e.target.parentNode.offsetWidth))
-          [x, y] = [(e.x - e.target.offsetLeft), (e.y - (e.target.parentNode.offsetHeight - e.target.naturalHeight / (e.target.naturalWidth / e.target.parentNode.offsetWidth)) / 2 - e.target.parentNode.offsetTop)]
-      else
-          [x, y] = [(e.x - e.target.offsetLeft), (e.y - e.target.offsetTop)]
-  
-  
-      if (!(x < 0 || y < 0 || x >= e.target.offsetWidth - (e.target.parentNode.offsetWidth - e.target.naturalWidth / (e.target.naturalHeight / e.target.parentNode.offsetHeight)) - 7 || y >= e.target.offsetHeight)) {
-          console.log(`${x}, ${Math.ceil(x * e.target.naturalWidth / (e.target.offsetWidth - 50))}, ${e.target.naturalWidth}`)
-          console.log(`${y}, ${Math.ceil(y * e.target.naturalHeight / e.target.offsetHeight)}, ${e.target.naturalHeight}`)
-          console.dir(e.target)
-          console.dir(e.target.parentNode)
-          x = Math.ceil(x * e.target.naturalWidth / (e.target.offsetWidth - 50))
-          y = Math.ceil(y * e.target.naturalHeight / e.target.offsetHeight)
-          // console.log(e.target.naturalWidth)
-          // console.log(e.target.naturalHeight)
-          // console.log(x)
-          // console.log(y)
-          // y *= Math.ceil(Math.max(e.target.naturalHeight, e.target.offsetHeight) / Math.min(e.target.naturalWidth, e.target.offsetWidth))
-          setPixelsInfo(Jimp.intToRGBA(resultPhoto.getPixelColor(x, y)))
-      }
-      */
 })
 
 rgbValues = document.getElementById('rgb')
