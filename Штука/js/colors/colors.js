@@ -35,10 +35,13 @@ document.getElementById('save-image').addEventListener('click', () => {
 })
 
 picture.addEventListener('click', (e) => {
-    let onCanvasX = e.x - e.target.offsetLeft
-    let onCanvasY = e.y - e.target.offsetTop
-    let x = Math.ceil(onCanvasX * e.target.naturalWidth / e.target.offsetWidth)
-    let y = Math.ceil(onCanvasY * e.target.naturalHeight / e.target.offsetHeight)
+    let rect = e.target.getBoundingClientRect()
+    let onCanvasX = e.clientX - rect.left
+    let onCanvasY = e.clientY - rect.top
+
+    let scale = e.target.naturalWidth / e.target.offsetWidth
+    let x = Math.ceil(onCanvasX * scale)
+    let y = Math.ceil(onCanvasY * scale)
     setPixelsInfo(Jimp.intToRGBA(colorManipulator.resultPhoto.getPixelColor(x, y)))
 })
 

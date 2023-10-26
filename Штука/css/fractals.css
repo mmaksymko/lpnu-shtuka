@@ -107,3 +107,10 @@ input[type="color"]:hover {
 .random-button {
     margin-left: 0.75rem;
 }
+
+@media (width< 540px) {
+    .toggle-button {
+        font-size: 1rem;
+        width: calc(7rem + 4.5vw);
+    }
+}

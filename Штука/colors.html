@@ -22,7 +22,7 @@
 
         <main class="main">
             <nav class="navigation">
-                <section class="top-nav-side colors-nav">
+                <section class="top-nav-side">
                     <a href="index.html" class="svg-button-container" title="Повернутись до початкової сторінки">
                         <?xml version="1.0" encoding="utf-8"?>
                         <svg width="3.5rem" class="svg-button" viewBox="2 2 20 30" xmlns="http://www.w3.org/2000/svg">
@@ -38,7 +38,7 @@
                         style="display: none">
 
                 </section>
-                <section class="top-nav-side colors-nav">
+                <section class="top-nav-side">
                     <button type="button" class="button colors-button" id="save-image"
                         title="Зберегти зображення в пам'яті пристрою">
                         Зберегти як зображення
@@ -82,8 +82,8 @@
                     </section>
                 </article>
                 <div class="canvas">
-                    <div class="kanvas2" id="canvas" title="Натисніть на зображення, аби визначити колір піксела">
-                        <div class="kanvas1">
+                    <div id="canvas" title="Натисніть на зображення, аби визначити колір піксела">
+                        <div class="image-wrapper">
                             <img src="./img/start.jpg" class="edited-picture" id="picture" alt="picture">
                         </div>
                     </div>
@@ -185,12 +185,16 @@
                 </svg>
             </div>
             <span style="display: none;">
-                Хочете дізнатись більше інформації про RGB? <b><u><a
-                            href="https://www.colorsexplained.com/rgb-color-model/">Тисніть!</a></u></b>
+                <text>
+                    Хочете дізнатись більше про <b>RGB</b>? <b><u><a
+                                href="https://www.colorsexplained.com/rgb-color-model/">Тисніть!</a></u></b>
+                </text>
             </span>
             <span style="display: none;">
-                Хочете дізнатись більше інформації про HSL? <b><u><a
-                            href="https://giggster.com/guide/basics/hue-saturation-lightness/">Тисніть!</a></u></b>
+                <text>
+                    Хочете дізнатись більше про <b>HSL</b>? <b><u><a
+                                href="https://giggster.com/guide/basics/hue-saturation-lightness/">Тисніть!</a></u></b>
+                </text>
             </span>
 
             <div class=" svg-button-container" id="next-help-button" title="Наступна сторінка допомоги">
