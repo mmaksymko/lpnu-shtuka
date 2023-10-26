@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/slider.css">
+    <link rel="stylesheet" href="css/section-page.css">
     <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/help.css">
     <title>Колірні схеми на ШТУЦІ</title>
 </head>
 
@@ -56,7 +59,7 @@
                     <section>
                         <div class="slider-parameter-description">
                             <text class="parameter-description">
-                                Освітленність червоного
+                                Освітленість червоного
                             </text>
                             <text class="slider-value" id="colors-value">
                                 50
@@ -79,8 +82,10 @@
                     </section>
                 </article>
                 <div class="canvas">
-                    <div class="kanvas" id="canvas" title="Натисніть на зображення, аби визначити колір піксела">
-                        <img src="./img/start.jpg" class="edited-picture" id="picture" alt="picture">
+                    <div class="kanvas2" id="canvas" title="Натисніть на зображення, аби визначити колір піксела">
+                        <div class="kanvas1">
+                            <img src="./img/start.jpg" class="edited-picture" id="picture" alt="picture">
+                        </div>
                     </div>
                 </div>
             </section>
@@ -199,9 +204,10 @@
     </div>
 
 
-    <script src="./js/jimp.min.js"></script>
-    <script src="./js/ColorsManager.js"></script>
-    <script src="./js/colors.js"></script>
+    <script src="./js/libs/jimp.min.js"></script>
+    <script src="./js/colors/ColorsManager.js"></script>
+    <script src="./js/colors/ColorManipulator.js"></script>
+    <script src="./js/colors/colors.js"></script>
 </body>
 
 </html>

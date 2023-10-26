@@ -1,0 +1,30 @@
+.help-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.exit-help-button {
+    fill: var(--button-color);
+}
+
+.help-main {
+    padding: 2rem;
+    font-size: 1.75rem;
+    text-align: justify;
+}
+
+.help-images {
+    margin: 0.75rem 0 0 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+}
+
+.help-images>img {
+    max-height: 160px;
+    height: auto;
+    max-width: 45%;
+    margin: 0 1rem;
+}
