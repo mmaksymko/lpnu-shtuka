@@ -117,7 +117,7 @@ canvas {
     }
 }
 
-@media (width<760px) {
+@media (width<763px) {
     .footer {
         font-size: 1.2rem;
         text-align: center;

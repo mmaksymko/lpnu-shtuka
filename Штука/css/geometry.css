@@ -1,0 +1,102 @@
+.geometry-nav {
+    justify-content: space-between;
+}
+
+.top-nav-side {
+    width: 95%;
+}
+
+.scale-container {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-wrap: nowrap;
+    column-gap: 1rem;
+    margin: 0 1rem;
+    justify-content: space-around;
+}
+
+.parameters-container {
+    /* min-width: 40%; */
+    /* max-width: 40%; */
+    margin-right: 2%;
+}
+
+.canvas {
+    width: 55%;
+}
+
+input[type=number] {
+    margin: 0;
+    font: inherit;
+    font-size: 0.75rem;
+    width: 27%;
+    border-radius: 0.75rem;
+    padding: 0.5rem 0.25rem;
+}
+
+.parameter-input-container {
+    display: flex;
+    font-size: 1rem;
+}
+
+.triangle-point-container,
+.increase-coefficient {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.increase-coefficient>input {
+    width: 90%;
+}
+
+.triangle-point-container>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.parameters-container>section {
+    padding: 0.75rem 0rem;
+    text-align: center;
+}
+
+.title {
+    margin-bottom: 0.25rem;
+}
+
+.button:not(.scale-button) {
+    border-radius: 3rem;
+    width: 60%;
+    align-self: center;
+    margin-bottom: 1rem;
+}
+
+.scale-button {
+    margin-top: 0.25rem;
+}
+
+.save-picture {
+    margin-top: 1rem;
+    max-width: 400px;
+}
+
+@media (width<763px) {
+
+    .parameters-container {
+        margin: 0;
+    }
+
+    .canvas {
+        width: 98%;
+    }
+
+    .save-picture {
+        max-width: 320px;
+    }
+
+    .geometry-nav {
+        justify-content: space-between;
+    }
+}

@@ -39,10 +39,6 @@
     border-radius: 50%;
 }
 
-input[type=number]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-}
-
 
 input[type=number] {
     margin: 0;

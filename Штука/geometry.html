@@ -22,7 +22,7 @@
         </header>
 
         <main class="main">
-            <nav class="navigation">
+            <nav class="navigation geometry-nav">
                 <section class="top-nav-side">
                     <a href="index.html" class="svg-button-container" title="Повернутись до початкової сторінки">
                         <?xml version="1.0" encoding="utf-8"?>
@@ -32,6 +32,9 @@
                                 stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </a>
+                    <button type="button" class="button save-picture" text="Зберегти картинку на пристрої">
+                        Зберегти як зображення
+                    </button>
                     <div class="svg-button-container" id="geometry-help-button"
                         title="Дізнатись інформацію про колірні схеми">
                         <?xml version="1.0" encoding="utf-8"?>
@@ -44,31 +47,74 @@
                 </section>
             </nav>
             <section class="section-main-part-container">
-                <article class="parameters-container colors-parameters">
+                <article class="parameters-container">
+                    <section class="parameter-input-container">
+                        <div class="triangle-point-container">
+                            <text>Точка A</text>
+                            <div class="triangle-point">
+                                <text>(</text>
+                                <input type="number" name="triangle-a-x" id="triangle-a-x" placeholder="-3"
+                                    title="Значення 'x' точки A">
+                                <text> ; </text>
+                                <input type="number" name="triangle-a-y" id="triangle-a-y" placeholder="1"
+                                    title="Значення 'y' точки A">
+                                <text>)</text>
+                            </div>
+                        </div>
+                        <div class="triangle-point-container">
+                            <text>Точка B</text>
+                            <div class="triangle-point">
+                                <text>(</text>
+                                <input type="number" name="triangle-b-x" id="triangle-b-x" placeholder="-3"
+                                    title="Значення 'x' точки B">
+                                <text> ; </text>
+                                <input type="number" name="triangle-b-y" id="triangle-b-y" placeholder="1"
+                                    title="Значення 'y' точки B">
+                                <text>)</text>
+                            </div>
+                        </div>
+                        <div class="triangle-point-container">
+                            <text>Точка C</text>
+                            <div class="triangle-point">
+                                <text>(</text>
+                                <input type="number" name="triangle-b-x" id="triangle-b-x" placeholder="-3"
+                                    title="Значення 'x' точки C">
+                                <text> ; </text>
+                                <input type="number" name="triangle-b-y" id="triangle-b-y" placeholder="1"
+                                    title="Значення 'y' точки C">
+                                <text>)</text>
+                            </div>
+                        </div>
+                    </section>
+
+                    <button type="button" class="button save-fractal" text="Зберегти зґенерований фрактал на пристрої">
+                        Зґенерувати трикутника
+                    </button>
+                    <section title="">
+                        <div class="increase-coefficient">
+                            <text class="title">Коефіцієнт збільшення</text>
+                            <input type="number" name="triangle-increase" id="triangle-increase" placeholder="-3"
+                                title="Значення 'x' точки B">
+                        </div>
+                    </section>
+                    <button type="button" class="button save-fractal" text="Зберегти зґенерований фрактал на пристрої">
+                        Здійснити рух
+                    </button>
                     <section>
-                        <div class="slider-parameter-description">
-                            <text class="parameter-description">
-                                Освітленість червоного
-                            </text>
-                            <text class="slider-value" id="colors-value">
-                                50
-                            </text>
-                        </div>
-                        <div class="slider-container" title="100 - білий, 0 - чорний, 50 - початковий колір">
-                            <input type="range" min="0" max="100" value="50" class="slider hsl-slider-red"
-                                id="colors-slider">
-                        </div>
+                        <text>Масштаб</text>
+                        <section class="scale-container">
+                            <button type="button" class="button scale-button"
+                                text="Зменшити масштаб декартової системи координат">
+                                -
+                            </button> <button type="button" class="button scale-button"
+                                text="Збільшити масштаб декартової системи координат">
+                                +
+                            </button>
+                        </section>
                     </section>
-                    <section class="rgb" title="RGB значення обраного піксела. Для визначення натисніть на зображення.">
-                        <text id="rgb">
-                            RGB: (0, 0, 0)
-                        </text>
-                    </section>
-                    <section class="hsl" title="HSL значення обраного піксела. Для визначення натисніть на зображення.">
-                        <text id="hsl">
-                            HSL: (0°, 0%, 0%)
-                        </text>
-                    </section>
+                    <!-- <button type="button" class="button save-fractal" text="Зберегти зґенерований фрактал на пристрої">
+                        Зберегти як зображення
+                    </button> -->
                 </article>
                 <div class="canvas">
 
@@ -90,10 +136,7 @@
     </div>
 
 
-    <script src="./js/libs/jimp.min.js"></script>
-    <script src="./js/colors/ColorsManager.js"></script>
-    <script src="./js/colors/ColorManipulator.js"></script>
-    <script src="./js/colors/colors.js"></script>
+
 </body>
 
 </html>
