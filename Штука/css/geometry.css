@@ -16,19 +16,19 @@
 }
 
 .parameters-container {
-    /* min-width: 40%; */
-    /* max-width: 40%; */
     margin-right: 2%;
 }
 
 .canvas {
-    width: 55%;
+    padding: 0 0.2rem;
+    max-height: 98%;
+    width: 60%;
 }
 
 input[type=number] {
     margin: 0;
     font: inherit;
-    font-size: 0.75rem;
+    font-size: 1rem;
     width: 27%;
     border-radius: 0.75rem;
     padding: 0.5rem 0.25rem;
@@ -75,11 +75,19 @@ input[type=number] {
 
 .scale-button {
     margin-top: 0.25rem;
+    height: 2rem;
 }
 
 .save-picture {
     margin-top: 1rem;
     max-width: 400px;
+}
+
+@media (width<790px) {
+    .canvas {
+        height: auto;
+        aspect-ratio: 1/1;
+    }
 }
 
 @media (width<763px) {
@@ -90,6 +98,7 @@ input[type=number] {
 
     .canvas {
         width: 98%;
+        aspect-ratio: unset;
     }
 
     .save-picture {
