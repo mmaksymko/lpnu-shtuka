@@ -118,7 +118,7 @@ window.addEventListener("load", (event) => {
         .addText(`<b>Демонстрація</b>`)
         .addDemonstartion('./img/fractals_demo.gif')
         .addNavigation()
-        .addPage(`Хочете дізнатись більше інформації про фрактал? <b><u><a href="https://larryriddle.agnesscott.org/ifs/heighway/heighway.htm">Тисніть!</a></u></b>`)
+        .addPage(`Хочеш дізнатись більше інформації про фрактал? <b><u><a href="https://larryriddle.agnesscott.org/ifs/heighway/heighway.htm">Тисни!</a></u></b>`)
         .addText(`<b>Крива дракона</b> <i>(також відома як фрактал <b>Гартера-Гейвея</b>)</i> - фрактал, який зображається
             наступним чином: починаючи з <b>базового сегмента</b>, кожен сегмент <b>замінюється</b> двома сегментами
             з <b>прямим кутом</b> і з обертанням <b>на 45°</b>, альтернативно, праворуч і ліворуч.`)
@@ -134,7 +134,7 @@ window.addEventListener("load", (event) => {
         .addText(`<b>Демонстрація</b>`)
         .addDemonstartion('./img/fractals_demo.gif')
         .addNavigation()
-        .addPage(` Хочете дізнатись більше інформації про фрактал? <b><u><a href="hhttps://fractalsaco.weebly.com/julia-set.html">Тисніть!</a></u></b> (або <b><u><a href="https://pi.math.cornell.edu/~klindsey/presentations/MandelbrotReport.pdf"> сюди)</a></u></b> `)
+        .addPage(` Хочеш дізнатись більше інформації про фрактал? <b><u><a href="hhttps://fractalsaco.weebly.com/julia-set.html">Тисни!</a></u></b> (або <b><u><a href="https://pi.math.cornell.edu/~klindsey/presentations/MandelbrotReport.pdf"> сюди</a></u></b>) `)
         .addText(`<b>Множини Жюлія</b> є надмножиною <b>множин Мандельброта</b>, перетином яких є всі нероздільні
             результати Жюлія. Ґенеруються вони також схожим способом до множини Мандельброта, проте в формулі
             <b>z<sub>n+1</sub> = z<sub>n</sub><sup>2</sup> + c</b>, параметр <b>c</b> є константою, а <b>z</b> -

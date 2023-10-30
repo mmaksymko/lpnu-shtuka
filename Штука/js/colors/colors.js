@@ -70,7 +70,7 @@ window.addEventListener("load", (event) => {
         .addText(`<b>Демонстрація</b>`)
         .addDemonstartion('./img/colors_demo.gif')
         .addNavigation()
-        .addPage(`Хочете дізнатись більше про <b>RGB</b>? <b><u><a href="https://www.colorsexplained.com/rgb-color-model/">Тисніть!</a></u></b>`)
+        .addPage(`Хочеш дізнатись більше про <b>RGB</b>? <b><u><a href="https://www.colorsexplained.com/rgb-color-model/">Тисни!</a></u></b>`)
         .addText(`<b>RGB</b> <b><i>(Red, Green, Blue — червоний, зелений, синій)</b></i> — колірна модель, що описує
             спосіб змішання кольору, за яким <b>червоне</b>, <b>зелене</b> та <b>синє</b> світло накладаються разом,
             змішуючись у різноманітні кольори. Перше зображення на ілюстрації отримано накладанням наступних трьох.`)
@@ -80,7 +80,7 @@ window.addEventListener("load", (event) => {
             пристроями є ТБ, відеокамери, сканери, </i>вихідними</i> - дисплеї різних технологій (CRT, LCD, плазма, OLED тощо)`)
         .addImages(['./img/rgb1.jpg', './img/rgb2.webp'], ['rgb example', 'rgb example'])
         .addNavigation()
-        .addPage(`Хочете дізнатись більше про <b>HSL</b>? <b><u><a href="https://giggster.com/guide/basics/hue-saturation-lightness/">Тисніть!</a></u></b>`)
+        .addPage(`Хочеш дізнатись більше про <b>HSL</b>? <b><u><a href="https://giggster.com/guide/basics/hue-saturation-lightness/">Тисни!</a></u></b>`)
         .addText(`<b>HSL</b> <b><i>(Hue, Saturation, Lightness - відтінок, насиченість, світлість)</b></i> - циліндрична
            колірна модель, що переводить точки з <b>RGB</b> в більш <b>інтуїтивну</b> для людини систему.`)
         .addImages(['./img/hsl1.png', './img/hsl2 (rgb2hsl).gif'], ['rgb to hsl', 'rgb to hsl'])

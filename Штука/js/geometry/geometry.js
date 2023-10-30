@@ -134,13 +134,13 @@ window.addEventListener("load", (event) => {
         .addText(`<b>Демонстрація</b>`)
         .addDemonstartion('./img/geometry_demo.gif')
         .addNavigation()
-        .addPage(`Хочете дізнатись більше про <b>RGB</b>? <b><u><a href="https://www.colorsexplained.com/rgb-color-model/">Тисніть!</a></u></b>`)
+        .addPage(`Хочеш дізнатись більше про <b>афінні перетворення</b>? <b><u><a href="https://www.cs.umd.edu/class/fall2018/cmsc425/Lects/lect06-affine-xform.pdf">Тисни!</a></u></b>`)
         .addText(`<b>Афінне перетворення</b> <b><i>(лат. affinis, «пов'язаний з»)</i></b> — відображення площини або простору в собі, при якому <b>паралельні</b> прямі переходять у <b>паралельні</b> прямі, <b>пересічні</b> — в <b>пересічні</b>, <b>мимобіжні</b> — в <b>мимобіжні</b>.`)
         .addImage('./img/affineTransofrmations.png', 'affine tranformations')
         .addText(`Зазвичай лінійна алгебра використовує <b>матриці</b> для представлення <b>лінійних перетворень</b>, і <b>векторну суму</b> для представлення паралельних перенесень.`)
         .addImages(['./img/affineFormula1.png', './img/affineFormula2.png', './img/affineFormula3.png', './img/affineFormula4.png'], ['affine formula pt1', 'affine formula pt2', 'affine formula pt3', 'affine formula pt4'])
         .addNavigation()
-        .addPage(`Хочете дізнатись більше про <b>HSL</b>? <b><u><a href="https://giggster.com/guide/basics/hue-saturation-lightness/">Тисніть!</a></u></b>`)
+        .addPage(`Хочеш дізнатись більше про <b>зсув</b> та <b>масшатабування</b>? <b><u><a href="https://dirsig.cis.rit.edu/docs/new/affine.html">Тисни!</a></u></b>`)
         .addText(`<b>Зсув</b>`)
         .addText(`Зсув на фіксований вектор <b><i>v</i></b> переносить кожну точку на <i><b>p</i></b> to <i><b>p + ~v</i></b>`)
         .addImages(['./img/affineTranslation1.png', './img/affineTranslation2.png', './img/affineTranslation3.png'], ['affine translation', 'affine translation pt2', 'affine translation pt3'])
@@ -150,9 +150,9 @@ window.addEventListener("load", (event) => {
             тому можна також говорити про масштабування точки`)
         .addImages(['./img/affineScaling1.png', './img/affineScaling2.png', './img/affineScaling3.png'], ['affine scaling pt1', 'affine scaling pt2', 'affine scaling pt3'])
         .addNavigation()
-        .addPage(`Хочете дізнатись більше про <b>HSL</b>? <b><u><a href="https://giggster.com/guide/basics/hue-saturation-lightness/">Тисніть!</a></u></b>`)
-        .addText(`<b>Відбиття</b> у своїй загальній форміє є віддзеркаленням шляхом перевертання усіх точок. 
-            Рефлексія у тривимірному просторі є особливою формою масштабування з негативним фактором.`)
+        .addPage(`Хочеш дізнатись більше про <b>відбиття</b> та <b>поворот</b>? <b><u><a href="https://people.computing.clemson.edu/~dhouse/courses/401/notes/affines-matrices.pdf">Тисни!</a></u></b>`)
+        .addText(`<b>Відбиття</b> <b><i>(рефлексія)</i></b> у своїй загальній форміє є віддзеркаленням шляхом перевертання усіх точок. 
+            Відбиття у тривимірному просторі є особливою формою масштабування з негативним фактором.`)
         .addImages(['./img/affineReflection1.png', './img/affineReflection2.png', './img/affineReflection4.png', './img/affineReflection5.png'], ['affine reflection pt1', 'affine reflection pt2', 'affine reflection pt4', 'affine reflection pt5'])
         .addLineBreak()
         .addText(`<b>Поворот</b> у своїй загальній формі визначається, як перетворення кожної точки навколо 
