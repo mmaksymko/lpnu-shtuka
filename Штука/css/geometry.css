@@ -71,17 +71,34 @@ input[type=number] {
     border-radius: 3rem;
     width: 60%;
     align-self: center;
-    margin-bottom: 1rem;
 }
 
 .scale-button {
-    margin-top: 0.25rem;
+    margin: 0.25rem 0;
     height: 2rem;
+    /* margin-bottom: 0.25rem; */
 }
 
 .save-picture {
     margin-top: 1rem;
     max-width: 400px;
+}
+
+button {
+    margin-bottom: 0.5rem;
+}
+
+#generate-triangle {
+    border: none;
+    background: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0;
+    flex-wrap: nowrap;
+    /* margin-bottom: 0.5rem; */
+    /* margin-bottom: 0.25rem; */
 }
 
 @media (width<763px) {

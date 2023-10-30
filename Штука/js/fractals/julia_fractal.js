@@ -70,9 +70,6 @@ class JuliaFractal {
         updatePixels();
     }
 
-    getRandomValues = () => {
-        let arr = [[-1, 0], [0, 0.5], [0.36, 0.1], [-0.1, 0.8], [-0.38, 0.6], [0.285, -0.5], [0.285, 0.012], [-0.8, 0.156], [-0.72, 0.1889]]
-        return arr[Math.floor(Math.random() * arr.length)];
-    }
-
+    #arr = [[-1, 0], [0, 0.5], [0.36, 0.1], [-0.1, 0.8], [-0.38, 0.6], [0.285, -0.5], [0.285, 0.012], [-0.8, 0.156], [-0.72, 0.1889]]
+    getRandomValues = () => this.#arr[Math.floor(Math.random() * this.#arr.length)];
 }

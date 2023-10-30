@@ -99,6 +99,15 @@ document.getElementById('generate-triangle-button').addEventListener('click', ()
     }
 })
 
+document.getElementById('random-triangle-button').addEventListener('click', () => {
+    let inputs = document.getElementsByClassName("triangle-axis-point")
+    let triangle = geometryManager.getRandomTriangle()
+    for (let i = 0; i != inputs.length; ++i) {
+        inputs[i].value = triangle[i]
+    }
+    document.getElementById('generate-triangle-button').click()
+})
+
 document.getElementById('translate-button').addEventListener('click', (e) => {
     if (!document.getElementById('triangle-scale').value) {
         printError('Введіть валідні дані!')

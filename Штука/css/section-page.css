@@ -104,10 +104,20 @@ canvas {
 .button:active,
 .button:hover,
 .svg-button-container:hover,
-.svg-button-container:active {
+.svg-button-container:active,
+.random-button>svg:hover,
+.random-button>svg:active {
     box-shadow: 0px 0px 8px var(--button-color);
     transform: translateY(-1px);
     cursor: pointer;
+}
+
+.random-button>svg {
+    border-radius: 50%;
+}
+
+.random-button {
+    margin-left: 0.75rem;
 }
 
 @media (width <975px) {
