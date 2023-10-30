@@ -79,18 +79,41 @@ scaleToFit = () => {
     scaleDownButton.click()
 }
 
+printError = (error) => alert(error)
+
 document.getElementById('generate-triangle-button').addEventListener('click', () => {
     let inputs = document.getElementsByClassName("triangle-axis-point")
     for (let input of inputs)
-        if (!input.value)
+        if (!input.value) {
+            printError('Введіть валідні чисельні дані!')
             return
-    geometryManager.drawTriangle(new Triangle(inputs[0].value, inputs[1].value, inputs[2].value, inputs[3].value, inputs[4].value, inputs[5].value))
-    scaleToFit()
+        } else if (input.value > Math.abs(50_000_000)) {
+            printError('Ви вийшли за рамки, далі обчислення були б заповільними! Рекомендуємо зменшити трикутника (вводячи як коефіцієнт зібльшення значення в межах (0; 1) або зґенерувати нового!')
+            return
+        }
+    try {
+        geometryManager.drawTriangle(new Triangle(inputs[0].value, inputs[1].value, inputs[2].value, inputs[3].value, inputs[4].value, inputs[5].value))
+        scaleToFit()
+    } catch (e) {
+        printError(e)
+    }
 })
 
 document.getElementById('translate-button').addEventListener('click', (e) => {
-    if (document.getElementById('triangle-scale').value && document.getElementById('triangle-scale').value > 0)
-        geometryManager.mirrorAndScale(document.getElementById('triangle-scale').value)
+    if (!document.getElementById('triangle-scale').value) {
+        printError('Введіть валідні дані!')
+        return
+    }
+    let factor = document.getElementById('triangle-scale').value
+    if (factor <= 0) {
+        printError('Трикутник не може мати від\'ємної площі!')
+        return
+    }
+    if (Math.max(factor * Math.abs(geometryManager.maxVisible.x), factor * Math.abs(geometryManager.maxVisible.y), factor * Math.abs(geometryManager.minVisible.x), factor * Math.abs(geometryManager.minVisible.y)) > 50_000_000) {
+        printError('Ви вийшли за рамки, далі обчислення були б заповільними! Рекомендуємо зменшити трикутника (вводячи як коефіцієнт зібльшення значення в межах (0; 1) або зґенерувати нового!')
+        return
+    }
+    geometryManager.mirrorAndScale(document.getElementById('triangle-scale').value)
     scaleToFit()
 })
 
@@ -125,6 +148,6 @@ window.addEventListener("load", (event) => {
         .addNavigation()
         .build()
 
-    document.getElementById('help-button').addEventListener('click', () => help.open(0))
+    document.getElementById('help-button').addEventListener('click', () => help.open())
     document.getElementById('exit-help-button').addEventListener('click', () => help.quit())
 });

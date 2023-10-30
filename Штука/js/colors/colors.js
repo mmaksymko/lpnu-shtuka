@@ -87,6 +87,6 @@ window.addEventListener("load", (event) => {
         .addImages(['./img/color-model-example.png', './img/hsl-hue-example.jpg', './img/hsl-saturation-example.jpg', './img/hsl-light-example.jpg'], ['hsl combine example', 'hsl hue example', 'hsl saturation example', 'hsl lightness example'])
         .addNavigation().build()
 
-    document.getElementById('help-button').addEventListener('click', () => help.open(0))
+    document.getElementById('help-button').addEventListener('click', () => help.open())
     document.getElementById('exit-help-button').addEventListener('click', () => help.quit())
 });

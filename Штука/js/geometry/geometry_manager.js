@@ -163,6 +163,7 @@ class GeometryManager {
             pop()
             strokeWeight(1);
             stroke('black')
+            textSize(TEXT_SIZE / 1.25);
             text(this.triangle.toString(this.scalingFactor), this.PADDING, this.PADDING)
         }
     }
@@ -190,7 +191,6 @@ class GeometryManager {
         point(this.#getCellX(tri.a.x), this.#getCellY(tri.a.y))
         point(this.#getCellX(tri.b.x), this.#getCellY(tri.b.y))
         point(this.#getCellX(tri.c.x), this.#getCellY(tri.c.y))
-        console.log(tri.getArea())
         pop()
     }
 

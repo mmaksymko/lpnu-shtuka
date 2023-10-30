@@ -19,7 +19,7 @@ class Help {
         this.index = 0
     };
 
-    open = (index) => {
+    open = (index = 0) => {
         this.pageContainer.style.display = 'none'
         this.index = index >= this.mains.length ? 0 : index < 0 ? this.mains.length - 1 : index
 
