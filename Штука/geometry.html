@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/slider.css">
     <link rel="stylesheet" href="css/section-page.css">
-    <!-- <link rel="stylesheet" href="css/colors.css"> -->
     <link rel="stylesheet" href="css/geometry.css">
     <link rel="stylesheet" href="css/help.css">
     <title>Колірні схеми на ШТУЦІ</title>
@@ -32,7 +31,8 @@
                                 stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </a>
-                    <button type="button" class="button save-picture" text="Зберегти картинку на пристрої">
+                    <button type="button" class="button save-picture" id="save-button"
+                        text="Зберегти картинку на пристрої">
                         Зберегти як зображення
                     </button>
                     <div class="svg-button-container" id="geometry-help-button"
@@ -53,11 +53,11 @@
                             <text>Точка A</text>
                             <div class="triangle-point">
                                 <text>(</text>
-                                <input type="number" name="triangle-a-x" id="triangle-a-x" placeholder="-3"
-                                    title="Значення 'x' точки A">
+                                <input type="number" name="triangle-a-x" class="triangle-axis-point" id="triangle-a-x"
+                                    placeholder="-3" title="Значення 'x' точки A" min="-100" max="100">
                                 <text> ; </text>
-                                <input type="number" name="triangle-a-y" id="triangle-a-y" placeholder="1"
-                                    title="Значення 'y' точки A">
+                                <input type="number" name="triangle-a-y" class="triangle-axis-point" id="triangle-a-y"
+                                    placeholder="1" title="Значення 'y' точки A" min="-100" max="100">
                                 <text>)</text>
                             </div>
                         </div>
@@ -65,11 +65,11 @@
                             <text>Точка B</text>
                             <div class="triangle-point">
                                 <text>(</text>
-                                <input type="number" name="triangle-b-x" id="triangle-b-x" placeholder="-3"
-                                    title="Значення 'x' точки B">
+                                <input type="number" name="triangle-b-x" class="triangle-axis-point" id="triangle-b-x"
+                                    placeholder="-3" title="Значення 'x' точки B" min="-100" max="100">
                                 <text> ; </text>
-                                <input type="number" name="triangle-b-y" id="triangle-b-y" placeholder="1"
-                                    title="Значення 'y' точки B">
+                                <input type="number" name="triangle-b-y" class="triangle-axis-point" id="triangle-b-y"
+                                    placeholder="1" title="Значення 'y' точки B" min="-100" max="100">
                                 <text>)</text>
                             </div>
                         </div>
@@ -77,26 +77,27 @@
                             <text>Точка C</text>
                             <div class="triangle-point">
                                 <text>(</text>
-                                <input type="number" name="triangle-b-x" id="triangle-b-x" placeholder="-3"
-                                    title="Значення 'x' точки C">
+                                <input type="number" name="triangle-b-x" class="triangle-axis-point" id="triangle-c-x"
+                                    placeholder="-3" title="Значення 'x' точки C" min="-100" max="100">
                                 <text> ; </text>
-                                <input type="number" name="triangle-b-y" id="triangle-b-y" placeholder="1"
-                                    title="Значення 'y' точки C">
+                                <input type="number" name="triangle-b-y" class="triangle-axis-point" id="triangle-c-y"
+                                    placeholder="1" title="Значення 'y' точки C" min="-100" max="100">
                                 <text>)</text>
                             </div>
                         </div>
                     </section>
-                    <button type="button" class="button save-fractal" text="Зберегти зґенерований фрактал на пристрої">
+                    <button type="button" class="button" id="generate-triangle-button"
+                        text="Зґенерувати трикутник і зобразити на декартовій системі координат">
                         Зґенерувати трикутника
                     </button>
                     <section title="">
                         <div class="increase-coefficient">
                             <text class="title">Коефіцієнт збільшення</text>
-                            <input type="number" name="triangle-increase" id="triangle-increase" placeholder="-3"
-                                title="Значення 'x' точки B">
+                            <input type="number" name="triangle-scale" id="triangle-scale" placeholder="3" min="0"
+                                max="10000" pattern="\d+([.]\d+)?" title="Значення 'x' точки B">
                         </div>
                     </section>
-                    <button type="button" class="button save-fractal" text="Зберегти зґенерований фрактал на пристрої">
+                    <button type=" button" class="button" id="translate-button" text="Здійснити рух зі збільшенням">
                         Здійснити рух
                     </button>
                     <section>
@@ -112,7 +113,7 @@
                         </section>
                     </section>
                 </article>
-                <div class="canvas" id="canvas">
+                <div class="canvas" id="canvas" title="Декартова система координат">
                 </div>
             </section>
         </main>
@@ -132,6 +133,7 @@
     <script src="js/libs/p5.min.js"></script>
     <script src="js/geometry/Point.js"></script>
     <script src="js/geometry/Stroke.js"></script>
+    <script src="js/geometry/Triangle.js"></script>
     <script src="js/geometry/GeometryManager.js"></script>
     <script src="js/geometry/geometry.js"></script>
 

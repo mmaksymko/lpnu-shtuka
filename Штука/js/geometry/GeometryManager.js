@@ -1,61 +1,70 @@
 class GeometryManager {
     constructor(width, height) {
-        this.width = width
-        this.height = height
         this.SCALING_RATE = 25
-        this.scale = this.cellDimension = this.minX = this.minY = this.maxX = this.maxY = this.middleX = this.middleY = this.xQuantity = this.yQuantity
+        this.scale = this.cellDimension = null
+        this.min = new Point(null, null)
+        this.max = new Point(null, null)
+        this.middle = new Point(null, null)
+        this.minVisible = new Point(null, null)
+        this.maxVisible = new Point(null, null)
+        this.quantity = new Point(null, null)
+        this.resolution = new Point(width, height)
+        this.PADDING = 15
+        this.scaling = this.scalingFactor = 1
+        this.triangle = null
     }
 
-    drawGrid = (minX, maxX, minY, maxY, width = this.width, height = this.height) => {
-        push()
-        if (minX > maxX || minY > maxY)
+    drawGrid = (minX = this.min.x, maxX = this.max.x, minY = this.min.y, maxY = this.max.y, width = this.resolution.x, height = this.resolution.y) => {
+        if (min.x > max.x || min.y > max.y)
             return
-
-        this.minX = minX
-        this.minY = minY
-        this.maxX = maxX < 1 ? 1 : maxX
-        this.maxY = maxY < 1 ? 1 : maxY
-        this.width = width
-        this.height = height
+        clear()
+        background('white')
+        this.min.x = minX
+        this.max.x = maxX
+        this.min.y = minY
+        this.max.y = maxY
+        this.resolution.x = width
+        this.resolution.y = height
         strokeWeight(2)
         stroke('rgb(224, 224, 224)')
 
-        this.cellDimension = min(width / (this.maxX - this.minX + 4), height / (this.maxY - this.minY + 4)) * 0.95
-        this.xQuantity = Math.ceil(width / this.cellDimension - 1)
-        this.yQuantity = Math.ceil(height / this.cellDimension - 1)
-        this.scale = max(int(this.xQuantity / this.SCALING_RATE) + 1, int(this.yQuantity / this.SCALING_RATE) + 1)
+        this.cellDimension = Math.min(this.resolution.x / (this.max.x - this.min.x + 4), this.resolution.y / (this.max.y - this.min.y + 4)) * 0.95
+        this.quantity.x = Math.ceil((this.resolution.x - 2 * this.PADDING) / this.cellDimension - 1)
+        this.quantity.y = Math.ceil((this.resolution.y - 2 * this.PADDING) / this.cellDimension - 1)
+        this.scale = Math.max(int(this.quantity.x / this.SCALING_RATE) + 1, int(this.quantity.y / this.SCALING_RATE) + 1)
 
         let passedMiddle = false, foundPlace = false
-        for (let x = 2; x < this.xQuantity; x += this.scale) {
+        for (let x = 2; x < this.quantity.x; x += this.scale) {
+            //визначення центру
             for (let i = 0; i != this.scale; ++i) {
-                passedMiddle ||= x - i === Math.floor(this.xQuantity / 2)
+                passedMiddle ||= x - i === Math.floor(this.quantity.x / 2)
             }
-            foundPlace ||= (x + 2) >= Math.abs(this.maxX) && (this.xQuantity - 2) > Math.abs(this.minX)
+            foundPlace ||= (x + 2) >= Math.abs(this.max.x) && (this.quantity.x - 2) > Math.abs(this.min.x)
             if (foundPlace && passedMiddle) {
-                this.middleX = x
+                this.middle.x = x
                 passedMiddle = foundPlace = false
                 continue
             }
             new Stroke(
-                new Point(this.getX(x), this.cellDimension),
-                new Point(this.getX(x), height - this.cellDimension),
+                new Point(this.#getXCoordinate(x), this.#getXCoordinate(0)),
+                new Point(this.#getXCoordinate(x), this.resolution.y - this.PADDING * 0.75),
             ).draw()
         }
         passedMiddle = foundPlace = false
-        for (let y = 2; y < this.yQuantity; y += this.scale) {
+        for (let y = 2; y < this.quantity.y; y += this.scale) {
             for (let i = 0; i != this.scale; ++i) {
-                passedMiddle ||= y - i === Math.floor(this.yQuantity / 2)
+                passedMiddle ||= y - i === Math.floor(this.quantity.y / 2)
             }
-            foundPlace ||= (y + 2) >= Math.abs(this.maxY) && (this.yQuantity - 2) > Math.abs(this.minY)
+            foundPlace ||= (y + 2) >= Math.abs(this.max.y) && (this.quantity.y - 2) > Math.abs(this.min.y)
             if (foundPlace && passedMiddle) {
-                this.middleY = y
+                this.middle.y = y
                 passedMiddle = foundPlace = false
                 continue
             }
 
             new Stroke(
-                new Point(this.cellDimension, this.getY(y)),
-                new Point(width - this.cellDimension, this.getY(y)),
+                new Point(Math.max(this.cellDimension, this.PADDING * 0.5), this.#getYCoordinate(y)),
+                new Point(Math.min(this.resolution.x - this.cellDimension, this.resolution.x - this.PADDING * 0.5), this.#getYCoordinate(y)),
             ).draw()
         }
 
@@ -63,72 +72,116 @@ class GeometryManager {
         const TEXT_SIZE = 14
         textSize(TEXT_SIZE);
         stroke('black')
-        for (let x = 2; x < this.xQuantity; x += this.scale) {
-            if (x === this.middleX) {
-                console.log(this.middleX)
+
+        this.maxVisible.x = this.quantity.x - 1 - this.middle.x;
+        this.minVisible.x = 2 - this.middle.x;
+        for (let x = 2; x < this.quantity.x; x += this.scale) {
+            if (x === this.middle.x) {
                 new Stroke(
-                    new Point(this.getX(this.middleX), this.cellDimension),
-                    new Point(this.getX(this.middleX), height - this.cellDimension),
+                    new Point(this.#getXCoordinate(this.middle.x), this.cellDimension),
+                    new Point(this.#getXCoordinate(this.middle.x), this.resolution.y - this.cellDimension),
                 ).draw()
                 fill('black')
-                triangle(this.getX(this.middleX) - 7.5, this.cellDimension, this.getX(this.middleX) + 7.5, this.cellDimension, this.getX(this.middleX), this.cellDimension - 15);
+                triangle(this.#getXCoordinate(this.middle.x) - this.PADDING / 2, Math.max(this.cellDimension, this.PADDING), this.#getXCoordinate(this.middle.x) + this.PADDING / 2, Math.max(this.cellDimension, this.PADDING), this.#getXCoordinate(this.middle.x), Math.max(this.cellDimension - this.PADDING, 0));
             }
 
             new Stroke(
-                new Point(this.getX(x), this.getY(this.middleY) - this.cellDimension / NUMBER_LINE_DASH_DIVISOR),
-                new Point(this.getX(x), this.getY(this.middleY) + this.cellDimension / NUMBER_LINE_DASH_DIVISOR),
+                new Point(this.#getXCoordinate(x), this.#getYCoordinate(this.middle.y) - Math.max(this.cellDimension / NUMBER_LINE_DASH_DIVISOR, this.PADDING / 2.5)),
+                new Point(this.#getXCoordinate(x), this.#getYCoordinate(this.middle.y) + Math.max(this.cellDimension / NUMBER_LINE_DASH_DIVISOR, this.PADDING / 2.5)),
             ).draw()
 
-            if (x !== this.middleX) {
+            if (x !== this.middle.x) {
                 strokeWeight(1);
-                text(x - this.middleX, this.getX(x) - TEXT_SIZE / 3, this.getY(this.middleY) + this.cellDimension / NUMBER_LINE_DASH_DIVISOR * Math.ceil(this.xQuantity / 8.75))
+                if (this.middle.y - 2 > 1000)
+                    textSize(TEXT_SIZE / 1.25)
+                if (this.middle.y - 2 > 10000)
+                    textSize(TEXT_SIZE / 1.5)
+                text(x - this.middle.x, this.#getXCoordinate(x) - TEXT_SIZE / 3, this.#getYCoordinate(this.middle.y) + this.cellDimension / NUMBER_LINE_DASH_DIVISOR * Math.ceil(this.quantity.x / 8.75))
             }
             strokeWeight(2);
         }
 
-        for (let y = 2; y < this.yQuantity; y += this.scale) {
-            if (y === this.middleY) {
+        this.maxVisible.y = this.middle.y - 2;
+        this.minVisible.y = this.middle.y - this.quantity.y + 1;
+        for (let y = 2; y < this.quantity.y; y += this.scale) {
+            if (y === this.middle.y) {
                 new Stroke(
-                    new Point(this.cellDimension, this.getY(this.middleY)),
-                    new Point(width - this.cellDimension + 5, this.getY(this.middleY)),
+                    new Point(this.cellDimension, this.#getYCoordinate(this.middle.y)),
+                    new Point(this.resolution.x - this.cellDimension + 5, this.#getYCoordinate(this.middle.y)),
                 ).draw()
                 fill('black')
-                triangle(width - this.cellDimension + 5, this.getY(this.middleY) + 7.5, width - this.cellDimension + 5, this.getY(this.middleY) - 7.5, width - this.cellDimension + 20, this.getY(this.middleY));
+
+                triangle(Math.min(this.resolution.x - this.cellDimension, this.resolution.x - this.PADDING), this.#getYCoordinate(this.middle.y) + this.PADDING / 2, Math.min(this.resolution.x - this.cellDimension, this.resolution.x - this.PADDING), this.#getYCoordinate(this.middle.y) - this.PADDING / 2, Math.min(this.resolution.x - this.cellDimension + this.PADDING, this.resolution.x), this.#getYCoordinate(this.middle.y));
             }
 
             new Stroke(
-                new Point(this.getX(this.middleX) - this.cellDimension / NUMBER_LINE_DASH_DIVISOR, this.getY(y)),
-                new Point(this.getX(this.middleX) + this.cellDimension / NUMBER_LINE_DASH_DIVISOR, this.getY(y)),
+                new Point(this.#getXCoordinate(this.middle.x) - Math.max(this.cellDimension / NUMBER_LINE_DASH_DIVISOR, this.PADDING / 2.5), this.#getYCoordinate(y)),
+                new Point(this.#getXCoordinate(this.middle.x) + Math.max(this.cellDimension / NUMBER_LINE_DASH_DIVISOR, this.PADDING / 2.5), this.#getYCoordinate(y)),
             ).draw()
 
-            if (y !== this.middleY) {
+            if (y !== this.middle.y) {
                 strokeWeight(1);
-                text(this.middleY - y, this.getX(this.middleX) + this.cellDimension / NUMBER_LINE_DASH_DIVISOR * 1.5, this.getY(y) + TEXT_SIZE / 4)
+                if (this.middle.y - 2 > 1000)
+                    textSize(TEXT_SIZE / 1.25)
+                if (this.middle.y - 2 > 10000)
+                    textSize(TEXT_SIZE / 1.5)
+                text(' ' + this.middle.y - y, this.#getXCoordinate(this.middle.x) + this.cellDimension / NUMBER_LINE_DASH_DIVISOR + 8, this.#getYCoordinate(y) + TEXT_SIZE / 4)
                 strokeWeight(2);
             } else {
+                strokeWeight(8);
+                point(this.#getXCoordinate(this.middle.x), this.#getYCoordinate(this.middle.y))
                 strokeWeight(1);
-                text(y - this.middleY, this.getX(this.middleX) + this.cellDimension / NUMBER_LINE_DASH_DIVISOR / 2, this.getY(y) + TEXT_SIZE)
+                text(y - this.middle.y, this.#getXCoordinate(this.middle.x) + this.cellDimension / NUMBER_LINE_DASH_DIVISOR / 2, this.#getYCoordinate(y) + TEXT_SIZE)
                 strokeWeight(2);
             }
         }
+        if (this.triangle) {
+            push()
+            this.scaling = this.scalingFactor
+            scale(this.scaling, this.scaling)
+            this.drawTriangle()
+            this.scaling = 1
+            pop()
+        }
+    }
+
+    #addXPadding = (x) => (x + this.PADDING * 1.25) / this.scaling
+    #addYPadding = (y) => (y + this.PADDING * 1.5) / this.scaling
+    #getXCoordinate = (x) => this.#addXPadding(this.cellDimension * x)
+    #getYCoordinate = (y) => this.#addYPadding(this.cellDimension * y)
+    #getCellX = (x) => this.#getXCoordinate(this.middle.x) + this.cellDimension * x
+    #getCellY = (y) => this.#getYCoordinate(this.middle.y) - this.cellDimension * y
+
+    drawTriangle = (tri = this.triangle) => {
+        push()
+
+        strokeWeight(2);
+        stroke(53, 130, 15)
+        fill(53, 130, 15, 30)
+
+        this.triangle = tri
+
+        let scale = 2 / this.scaling
+        strokeWeight(scale);
+        triangle(this.#getCellX(tri.a.x), this.#getCellY(tri.a.y), this.#getCellX(tri.b.x), this.#getCellY(tri.b.y), this.#getCellX(tri.c.x), this.#getCellY(tri.c.y))
+
+        strokeWeight(scale * 4);
+        point(this.#getCellX(tri.a.x), this.#getCellY(tri.a.y))
+        point(this.#getCellX(tri.b.x), this.#getCellY(tri.b.y))
+        point(this.#getCellX(tri.c.x), this.#getCellY(tri.c.y))
+        strokeWeight(2);
         pop()
+
+        // pop()
     }
 
-    getX = (x) => (x < 2 || x > this.xQuantity) ? 0 : this.cellDimension * x
-    getY = (y) => (y < 2 || y > this.yQuantity) ? 0 : this.cellDimension * y
-    getCellX = (x) => (x < this.minX || x > this.maxX) ? 0 : this.cellDimension * this.middleX + this.cellDimension * x
-    getCellY = (y) => (y < this.minY || y > this.maxY) ? 0 : this.cellDimension * this.middleY + this.cellDimension * y
-    getCellPos = (x, y) => [this.getCellX(x), this.getCellY(y)]
+    mirrorAndScale = (scaleFactor) => {
+        if (!this.triangle)
+            return
 
-    drawTriangle = (aX, aY, bX, bY, cX, cY) => {
-
-    }
-
-    drawTriangle = (a, b, c) => {
-        this.drawTriangle(a.x, a.y, b.x, b.y, c.x, c.y)
-    }
-
-    rotateAndTranslate = () => {
-
+        clear()
+        this.scalingFactor *= scaleFactor
+        this.triangle.mirror()
+        this.drawGrid()
     }
 }

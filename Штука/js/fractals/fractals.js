@@ -32,26 +32,23 @@ let length
 
 let cnv
 let canvas = document.getElementById("canvas")
-let canvasWidth = canvas.clientWidth;
-let canvasHeight = canvas.clientHeight;
+let canvasResolution = new Point(canvas.clientWidth, canvas.clientHeight)
 
 let firstResize = true
 let onResize = () => {
-    canvasWidth = canvas.clientWidth;
-    canvasHeight = firstResize ? canvas.clientHeight - 5 : canvas.clientHeight;
+    canvasResolution.x = canvas.clientWidth;
+    canvasResolution.y = firstResize ? canvas.clientHeight - 5 : canvas.clientHeight;
     firstResize = false
-    resizeCanvas(canvasWidth, canvasHeight > 445 ? 445 : canvasHeight);
+    resizeCanvas(canvasResolution.x, Math.min(canvasResolution.y, 445));
 };
 
 function setup() {
-    cnv = createCanvas(canvasWidth, canvasHeight, {
+    cnv = createCanvas(canvasResolution.x, canvasResolution.y, {
         willReadFrequently: true
     });
     pixelDensity(1)
     cnv.parent('canvas');
     addEventListener("resize", onResize);
-
-    onResize();
     onResize();
 }
 
@@ -60,10 +57,10 @@ function draw() {
     strokeWeight(3)
     stroke('crimson')
 
-    startPoint = new Point(canvasWidth / 2 - canvasWidth / 4.75, 180)
+    startPoint = new Point(canvasResolution.x / 2 - canvasResolution.x / 4.75, 180)
     length = 2
 
-    if (canvasWidth < 500) {
+    if (canvasResolution.x < 500) {
         length = 1.35
     }
 
@@ -102,30 +99,17 @@ hideFractal = (toggleActive, toggleUnactive, isDragonValue, parametersActive, pa
     clearCanvas();
 }
 
-
 let real = document.getElementById('julia-constant-real')
 let imaginary = document.getElementById('julia-constant-imaginary')
-real.addEventListener('input', (event) => {
-    juliaFractal.draw(width, height, 150, parseFloat(real.value), parseFloat(imaginary.value), 0.02 * juliaSlider.value, ColorsManager.hexToRGB(document.getElementById('julia-primary-color').value.slice(1, 7)), document.getElementById('color-scheme-select').value)
-})
-imaginary.addEventListener('input', (event) => {
-    juliaFractal.draw(width, height, 150, parseFloat(real.value), parseFloat(imaginary.value), 0.02 * juliaSlider.value, ColorsManager.hexToRGB(document.getElementById('julia-primary-color').value.slice(1, 7)), document.getElementById('color-scheme-select').value)
-})
+real.addEventListener('input', () => juliaFractal.draw(width, height, 150, parseFloat(real.value), parseFloat(imaginary.value), 0.02 * juliaSlider.value, ColorsManager.hexToRGB(document.getElementById('julia-primary-color').value.slice(1, 7)), document.getElementById('color-scheme-select').value))
+imaginary.addEventListener('input', (event) => juliaFractal.draw(width, height, 150, parseFloat(real.value), parseFloat(imaginary.value), 0.02 * juliaSlider.value, ColorsManager.hexToRGB(document.getElementById('julia-primary-color').value.slice(1, 7)), document.getElementById('color-scheme-select').value))
 
 document.getElementsByClassName('random-button')[0].addEventListener('click', () => {
     [real.value, imaginary.value] = juliaFractal.getRandomValues()
     clearCanvas();
 })
-
-
-document.getElementById('julia-primary-color').addEventListener('input', (event) => {
-    juliaFractal.draw(width, height, 150, parseFloat(real.value), parseFloat(imaginary.value), 0.02 * juliaSlider.value, ColorsManager.hexToRGB(document.getElementById('julia-primary-color').value.slice(1, 7)), document.getElementById('color-scheme-select').value)
-})
-
-document.getElementById('color-scheme-select').addEventListener('change', (event) => {
-    juliaFractal.draw(width, height, 150, parseFloat(real.value), parseFloat(imaginary.value), 0.02 * juliaSlider.value, ColorsManager.hexToRGB(document.getElementById('julia-primary-color').value.slice(1, 7)), document.getElementById('color-scheme-select').value)
-})
-
+document.getElementById('julia-primary-color').addEventListener('input', (event) => juliaFractal.draw(width, height, 150, parseFloat(real.value), parseFloat(imaginary.value), 0.02 * juliaSlider.value, ColorsManager.hexToRGB(document.getElementById('julia-primary-color').value.slice(1, 7)), document.getElementById('color-scheme-select').value))
+document.getElementById('color-scheme-select').addEventListener('change', (event) => juliaFractal.draw(width, height, 150, parseFloat(real.value), parseFloat(imaginary.value), 0.02 * juliaSlider.value, ColorsManager.hexToRGB(document.getElementById('julia-primary-color').value.slice(1, 7)), document.getElementById('color-scheme-select').value))
 
 let footer = document.getElementsByClassName('help-footer')[0].childNodes[1]
 document.getElementById('fractal-help-button').addEventListener('click', () => {

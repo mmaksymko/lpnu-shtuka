@@ -21,8 +21,9 @@
 
 .canvas {
     padding: 0 0.2rem;
-    max-height: 98%;
-    width: 60%;
+    min-height: 420px;
+    max-height: 420px;
+    width: 58%;
 }
 
 input[type=number] {
@@ -81,13 +82,6 @@ input[type=number] {
 .save-picture {
     margin-top: 1rem;
     max-width: 400px;
-}
-
-@media (width<790px) {
-    .canvas {
-        height: auto;
-        aspect-ratio: 1/1;
-    }
 }
 
 @media (width<763px) {

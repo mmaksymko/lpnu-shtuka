@@ -45,9 +45,12 @@
 }
 
 .parameters-container>section,
-.canvas,
-canvas {
+.canvas {
     border-radius: 1rem;
+}
+
+canvas {
+    border-radius: 0.8rem;
 }
 
 .parameters-container {
