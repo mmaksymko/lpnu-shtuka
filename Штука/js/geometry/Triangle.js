@@ -15,6 +15,7 @@ class Triangle {
     }
 
     #dist = (A, B) => Math.sqrt((B.x - A.x) ** 2 + (B.y - A.y) ** 2)
+    #round = (num) => Math.round((num + Number.EPSILON) * 100) / 100
 
     getArea = () => {
         if (!this.a.x)
@@ -28,4 +29,5 @@ class Triangle {
         return Math.sqrt(p * (p - A) * (p - B) * (p - C))
     }
 
+    toString = (scalingFactor) => `A(${this.#round(this.a.x * scalingFactor)};${this.#round(this.a.y * scalingFactor)}), B(${this.#round(this.b.x * scalingFactor)};${this.#round(this.b.y * scalingFactor)}), C(${this.#round(this.c.x * scalingFactor)};${this.#round(this.c.y * scalingFactor)})`
 }

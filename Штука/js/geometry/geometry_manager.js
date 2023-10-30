@@ -96,10 +96,14 @@ class GeometryManager {
 
             if (x !== this.middle.x) {
                 strokeWeight(1);
-                if (this.middle.y - 2 > 1000)
+                if (this.minVisible.x - 2 < -1000)
                     textSize(TEXT_SIZE / 1.25)
-                if (this.middle.y - 2 > 10000)
+                if (this.minVisible.x - 2 < -10000)
                     textSize(TEXT_SIZE / 1.5)
+                if (this.minVisible.x - 2 < -100000)
+                    textSize(TEXT_SIZE / 1.75)
+                if (this.minVisible.x - 2 < -1000000)
+                    textSize(TEXT_SIZE / 2)
                 text(x - this.middle.x, this.#getXCoordinate(x) - TEXT_SIZE / 3, this.#getYCoordinate(this.middle.y) + this.cellDimension / NUMBER_LINE_DASH_DIVISOR * Math.ceil(this.quantity.x / 8.75))
             }
             strokeWeight(2);
@@ -130,10 +134,15 @@ class GeometryManager {
 
             if (y !== this.middle.y) {
                 strokeWeight(1);
-                if (this.middle.y - 2 > 1000)
-                    textSize(TEXT_SIZE / 1.25)
-                if (this.middle.y - 2 > 10000)
-                    textSize(TEXT_SIZE / 1.5)
+
+                if (this.minVisible.y - 2 < -1000000)
+                    textSize(TEXT_SIZE / 2)
+                else if (this.minVisible.y - 2 < -100000)
+                    textSize(TEXT_SIZE / 1.75)
+                else if (this.minVisible.y - 2 < -10000)
+                    textSize(TEXT_SIZE / 1.75)
+                else textSize(TEXT_SIZE / 1.25)
+
                 text(' ' + this.middle.y - y, this.#getXCoordinate(this.middle.x) + this.cellDimension / NUMBER_LINE_DASH_DIVISOR + 8, this.#getYCoordinate(y) + TEXT_SIZE / 4)
                 strokeWeight(2);
             } else {
@@ -154,7 +163,7 @@ class GeometryManager {
             pop()
             strokeWeight(1);
             stroke('black')
-            text(`A(${this.triangle.a.x * this.scalingFactor};${this.triangle.a.y * this.scalingFactor}), B(${this.triangle.b.x * this.scalingFactor};${this.triangle.b.y * this.scalingFactor}), C(${this.triangle.c.x * this.scalingFactor};${this.triangle.c.y * this.scalingFactor})`, this.PADDING, this.PADDING)
+            text(this.triangle.toString(this.scalingFactor), this.PADDING, this.PADDING)
         }
     }
 

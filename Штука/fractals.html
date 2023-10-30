@@ -41,7 +41,7 @@
                         title="Перейти до підсекції ґенерації фрактала Жюлія">
                         Фрактал Жюлія
                     </button>
-                    <div class="svg-button-container" id="fractal-help-button" title="Дізнатись інформацію про фрактал">
+                    <div class="svg-button-container" id="help-button" title="Дізнатись інформацію про фрактал">
                         <?xml version="1.0" encoding="utf-8"?>
                         <svg width="3.5rem" class="svg-button" viewBox="2 2 20 30" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -155,83 +155,14 @@
         </footer>
     </div>
 
-    <!-- секція з довідкою про фрактали, спершу схована -->
-    <div class="page-container help-container" style="display: none;">
-        <header class="header-footer help-header">
-            <text class="logo" title="ШТУКА навчає не лише візуально, а й дає трішки теорії!">
-                <a href="index.html"><b>ШТУКА-ПОМІЧНА</b></a>
-            </text>
-            <div class="svg-button-container" id="exit-dragon-help-button" title="Повернутись до ґенерації фракталів">
-                <svg width="3.5rem" class="svg-button exit-help-button" viewBox="2 2 20 30"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <g>
-                        <path id="svg_1" stroke-linejoin="round" stroke-linecap="round" stroke-width="2"
-                            stroke="#000000"
-                            d="m21,12c0,4.9706 -4.0294,9 -9,9c-4.97056,0 -9,-4.0294 -9,-9c0,-4.97056 4.02944,-9 9,-9c4.9706,0 9,4.02944 9,9z" />
-                        <g>
-                            <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#000000"
-                                d="m9.5,9.4185l5,5m0,-5l-5,5" />
-                        </g>
-                    </g>
-                </svg>
-            </div>
-        </header>
-
-        <!-- секція з довідкою про фрактал дракона, спершу схована -->
-        <main class="main fractals-main help-main dragon-help-container" style="display: none;">
-            <text>
-                <b>Крива дракона</b> <i>(також відома як фрактал <b>Гартера-Гейвея</b>)</i> - фрактал, який зображається
-                наступним чином: починаючи з <b>базового сегмента</b>, кожен сегмент <b>замінюється</b> двома сегментами
-                з <b>прямим кутом</b> і з обертанням <b>на 45°</b>, альтернативно, праворуч і ліворуч.
-            </text>
-            <img class="dragon-help-image" src="./img/dragonCurve1.png" alt="dragon curve illustration">
-            <text> Гейвей сконструював цей фрактал у <b>1967</b>, працюючи в <b>NASA</b> наступним чином: склав довгу
-                полоску паперу <b>навпіл</b>, <b>знову</b> в тім ж напрямку і так <b>n разів</b>. Розкривши зігнутий
-                папір так, що всі згини під <b>прямим кутом</b> він отримав <b>дракона n-ного порядку</b>.
-            </text>
-            <div class="help-images">
-                <img src="./img/dragonCurve2.png" alt="dragon curve real-life illustration pt.1">
-                <img src="./img/dragonCurve3.png" alt="dragon curve real-life illustration pt.2">
-            </div>
-        </main>
-
-        <!-- секція з довідкою про фрактал жюлія, спершу схована -->
-        <main class="main fractals-main help-main julia-set-main julia-help-container" style="display: none;">
-            <text>
-                <b>Множини Жюлія</b> є надмножиною <b>множин Мандельброта</b>, перетином яких є всі нероздільні
-                результати Жюлія. Ґенеруються вони також схожим способом до множини Мандельброта, проте в формулі
-                <b>z<sub>n+1</sub> = z<sub>n</sub><sup>2</sup> + c</b>, параметр <b>c</b> є константою, а <b>z</b> -
-                точкою на площині.
-            </text>
-            <img class="julia-help-gif" src="./img/juliaSet1.gif" alt="julia set illustration">
-            <text>
-                <b>Ґастон Жюлія</b> народився у <b>19 столітті</b> й вивчав поліноми та раціональні функції. Його
-                здобутки були забуті, допоки у <b>1970</b> <b>Бенуа Мандельброт</b> не зґенерував множини Жюлія
-                комп'ютерно.
-
-            </text>
-            <div class="help-images">
-                <img src="./img/juliaSet2.png" alt="julia set real-life illustration pt.1">
-                <img src="./img/juliaSet3.jpg" alt="julia set real-life illustration pt.2">
-            </div>
-        </main>
-
-        <footer class="header-footer footer help-footer">
-            <span>
-                 Хочете дізнатись більше інформації про фрактал? <b><u><a
-                            href="https://fractalsaco.weebly.com/julia-set.html">Тисніть!</a></u></b> (або <b><u><a
-                            href="https://pi.math.cornell.edu/~klindsey/presentations/MandelbrotReport.pdf">
-                            сюди)</a></u></b> 
-            </span>
-        </footer>
-    </div>
-
     <script src="./js/libs/p5.min.js"></script>
-    <script src="./js/colors/ColorsManager.js"></script>
-    <script src="./js/geometry/Point.js"></script>
-    <script src="./js/geometry/Stroke.js"></script>
-    <script src="./js/fractals/DragonCurve.js"></script>
-    <script src="./js/fractals/JuliaFractal.js"></script>
+    <script src="./js/colors/color_manager.js"></script>
+    <script src="./js/geometry/point.js"></script>
+    <script src="./js/geometry/stroke.js"></script>
+    <script src="./js/fractals/dragon_curve.js"></script>
+    <script src="./js/fractals/julia_fractal.js"></script>
+    <script src="./js/help/help.js"></script>
+    <script src="./js/help/help_builder.js"></script>
     <script src="./js/fractals/fractals.js"></script>
 </body>
 

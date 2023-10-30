@@ -84,18 +84,6 @@ input[type="color"]:hover {
     transform: translateY(-1px);
 }
 
-.dragon-help-image {
-    width: 70%;
-    align-self: center;
-    margin: 1rem 0;
-}
-
-.julia-help-gif {
-    height: 200px;
-    width: auto;
-    margin: 1rem auto;
-}
-
 .julia-set-main * {
     font-size: 1.29rem;
 }

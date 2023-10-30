@@ -43,8 +43,7 @@
                         title="Зберегти зображення в пам'яті пристрою">
                         Зберегти як зображення
                     </button>
-                    <div class="svg-button-container" id="colors-help-button"
-                        title="Дізнатись інформацію про колірні схеми">
+                    <div class="svg-button-container" id="help-button" title="Дізнатись інформацію про колірні схеми">
                         <?xml version="1.0" encoding="utf-8"?>
                         <svg width="3.5rem" class="svg-button" viewBox="2 2 20 30" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -104,113 +103,11 @@
         </footer>
     </div>
 
-
-    <div class="page-container help-container" style="display: none;">
-        <header class="header-footer help-header">
-            <text class="logo" title="ШТУКА навчає не лише візуально, а й дає трішки теорії!">
-                <a href="index.html"><b>ШТУКА-ПОМІЧНА</b></a>
-            </text>
-            <div class="svg-button-container" id="exit-help-button" title="Повернутись до роботи з колірними схемами">
-                <svg width="3.5rem" class="svg-button exit-help-button" viewBox="2 2 20 30"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <g>
-                        <path id="svg_1" stroke-linejoin="round" stroke-linecap="round" stroke-width="2"
-                            stroke="#000000"
-                            d="m21,12c0,4.9706 -4.0294,9 -9,9c-4.97056,0 -9,-4.0294 -9,-9c0,-4.97056 4.02944,-9 9,-9c4.9706,0 9,4.02944 9,9z" />
-                        <g>
-                            <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#000000"
-                                d="m9.5,9.4185l5,5m0,-5l-5,5" />
-                        </g>
-                    </g>
-                </svg>
-            </div>
-        </header>
-
-        <!-- секція з довідкою про , спершу схована -->
-        <main class="main help-main colors-help" style="display: none;">
-            <text>
-                <b>RGB</b> <b><i>(Red, Green, Blue — червоний, зелений, синій)</b></i> — колірна модель, що описує
-                спосіб змішання кольору, за яким <b>червоне</b>, <b>зелене</b> та <b>синє</b> світло накладаються разом,
-                змішуючись у різноманітні кольори. Перше зображення на ілюстрації отримано накладанням наступних трьох.
-            </text>
-            <div class=" help-images">
-                <img src="./img/color-model-example.png" alt="rgb combine example">
-                <img src="./img/rgb-red-example.png" alt="rgb red example">
-                <img src="./img/rgb-green-example.png" alt="rgb green example">
-                <img src="./img/rgb-blue-example.png" alt="rgb blue example">
-            </div>
-            <text>
-                Модель <b>RGB</b> залежна від пристроїв відображення, себто на різних пристроях кольори можуть
-                <b>різнитись</b>, адже залежні від елементів відтворення. Типовими </i>вхідними</i> <b>RGB</b>
-                пристроями є ТБ, відеокамери, сканери, </i>вихідними</i> - дисплеї різних технологій (CRT, LCD, плазма,
-                OLED тощо)
-            </text>
-            <div class="help-images">
-                <img src="./img/rgb1.jpg" alt="rgb example">
-                <img src="./img/rgb2.webp" alt="rgb example">
-            </div>
-        </main>
-
-        <!-- секція з довідкою про фрактал жюлія, спершу схована -->
-        <main class="main help-main colors-help" style="display: none;">
-
-            <text>
-                <b>HSL</b> <b><i>(Hue, Saturation, Lightness - відтінок, насиченість, світлість)</b></i> - циліндрична
-                колірна модель, що переводить точки з <b>RGB</b> в більш <b>інтуїтивну</b> для людини систему.
-            </text>
-            <div class=" help-images">
-                <img src="./img/hsl1.png" alt="rgb to hsl">
-                <img src="./img/hsl2 (rgb2hsl).gif" alt="rgb to hsl">
-            </div>
-            <br>
-            <text> <b>Відтінок</b> - кут кольору на колі RGB <i>(0 - червоний, 120 - зелений, 240 - синій)</i> <br>
-                <b>Насиченість</b> контролює кількість використаного кольору <br>
-                <b>Освітленість</b> ж показує світлість кольору <i>(0 - чорний, 50 - найчистіший колір, 100 - білий)</i>
-            </text>
-            <div class=" help-images">
-                <img src="./img/color-model-example.png" alt="rgb combine example">
-                <img src="./img/hsl-hue-example.jpg" alt="rgb red example">
-                <img src="./img/hsl-saturation-example.jpg" alt="rgb green example">
-                <img src="./img/hsl-light-example.jpg" alt="rgb blue example">
-            </div>
-
-        </main>
-
-        <footer class="header-footer footer help-footer">
-            <div class="svg-button-container" id="prev-help-button" title="Попередня сторінка допомоги">
-                <svg width="3.5rem" class="svg-button exit-help-button" viewBox="2 2 21 20" fill="none">
-                    <path
-                        d="M11 9L8 12M8 12L11 15M8 12H16M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
-                        stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-            </div>
-            <span style="display: none;">
-                <text>
-                    Хочете дізнатись більше про <b>RGB</b>? <b><u><a
-                                href="https://www.colorsexplained.com/rgb-color-model/">Тисніть!</a></u></b>
-                </text>
-            </span>
-            <span style="display: none;">
-                <text>
-                    Хочете дізнатись більше про <b>HSL</b>? <b><u><a
-                                href="https://giggster.com/guide/basics/hue-saturation-lightness/">Тисніть!</a></u></b>
-                </text>
-            </span>
-
-            <div class=" svg-button-container" id="next-help-button" title="Наступна сторінка допомоги">
-                <svg width="3.5rem" class="svg-button exit-help-button" viewBox="2 2 21 20" fill="none">
-                    <path
-                        d="M13 15L16 12M16 12L13 9M16 12H8M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
-                        stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-            </div>
-        </footer>
-    </div>
-
-
     <script src="./js/libs/jimp.min.js"></script>
-    <script src="./js/colors/ColorsManager.js"></script>
-    <script src="./js/colors/ColorManipulator.js"></script>
+    <script src="./js/colors/color_manager.js"></script>
+    <script src="./js/colors/color_manipulator.js"></script>
+    <script src="./js/help/help.js"></script>
+    <script src="./js/help/help_builder.js"></script>
     <script src="./js/colors/colors.js"></script>
 </body>
 

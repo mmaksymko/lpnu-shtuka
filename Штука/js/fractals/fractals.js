@@ -111,22 +111,34 @@ document.getElementsByClassName('random-button')[0].addEventListener('click', ()
 document.getElementById('julia-primary-color').addEventListener('input', (event) => juliaFractal.draw(width, height, 150, parseFloat(real.value), parseFloat(imaginary.value), 0.02 * juliaSlider.value, ColorsManager.hexToRGB(document.getElementById('julia-primary-color').value.slice(1, 7)), document.getElementById('color-scheme-select').value))
 document.getElementById('color-scheme-select').addEventListener('change', (event) => juliaFractal.draw(width, height, 150, parseFloat(real.value), parseFloat(imaginary.value), 0.02 * juliaSlider.value, ColorsManager.hexToRGB(document.getElementById('julia-primary-color').value.slice(1, 7)), document.getElementById('color-scheme-select').value))
 
-let footer = document.getElementsByClassName('help-footer')[0].childNodes[1]
-document.getElementById('fractal-help-button').addEventListener('click', () => {
-    document.getElementsByClassName('page-container')[0].style.display = 'none'
-    document.getElementsByClassName('help-container')[0].style.display = 'flex'
-    if (isDragon) {
-        document.getElementsByClassName('dragon-help-container')[0].style.display = 'flex'
-        footer.innerHTML = 'Хочете дізнатись більше інформації про фрактал? <b><u><a href="https://larryriddle.agnesscott.org/ifs/heighway/heighway.htm">Тисніть!</a></u></b>'
-    } else {
-        document.getElementsByClassName('julia-help-container')[0].style.display = 'flex'
-        footer.innerHTML = ' Хочете дізнатись більше інформації про фрактал? <b><u><a href="hhttps://fractalsaco.weebly.com/julia-set.html">Тисніть!</a></u></b> (або <b><u><a href="https://pi.math.cornell.edu/~klindsey/presentations/MandelbrotReport.pdf"> сюди)</a></u></b> '
-    }
-})
 
-document.getElementById('exit-dragon-help-button').addEventListener('click', () => {
-    document.getElementsByClassName('page-container')[0].style.display = 'flex'
-    document.getElementsByClassName('help-container')[0].style.display = 'none'
-    document.getElementsByClassName('dragon-help-container')[0].style.display = 'none'
-    document.getElementsByClassName('julia-help-container')[0].style.display = 'none'
-})
+window.addEventListener("load", (event) => {
+    let help = new HelpBuilder(document.querySelector('body'), document.getElementsByClassName('page-container')[0])
+        .addPage(`Хочете дізнатись більше інформації про фрактал? <b><u><a href="https://larryriddle.agnesscott.org/ifs/heighway/heighway.htm">Тисніть!</a></u></b>`)
+        .addText(`<b>Крива дракона</b> <i>(також відома як фрактал <b>Гартера-Гейвея</b>)</i> - фрактал, який зображається
+            наступним чином: починаючи з <b>базового сегмента</b>, кожен сегмент <b>замінюється</b> двома сегментами
+            з <b>прямим кутом</b> і з обертанням <b>на 45°</b>, альтернативно, праворуч і ліворуч.`)
+        .addImage('./img/dragonCurve1.png', 'dragon curve illustration')
+        .addText(`Гейвей сконструював цей фрактал у <b>1967</b>, працюючи в <b>NASA</b> наступним чином: склав довгу
+            полоску паперу <b>навпіл</b>, <b>знову</b> в тім ж напрямку і так <b>n разів</b>. Розкривши зігнутий
+            папір так, що всі згини під <b>прямим кутом</b> він отримав <b>дракона n-ного порядку</b>.`)
+        .addImages(['./img/dragonCurve2.png', './img/dragonCurve3.png'], ['dragon curve real-life illustration pt.1', 'dragon curve real-life illustration pt.2'])
+        .addPage(` Хочете дізнатись більше інформації про фрактал? <b><u><a href="hhttps://fractalsaco.weebly.com/julia-set.html">Тисніть!</a></u></b> (або <b><u><a href="https://pi.math.cornell.edu/~klindsey/presentations/MandelbrotReport.pdf"> сюди)</a></u></b> `)
+        .addText(`<b>Множини Жюлія</b> є надмножиною <b>множин Мандельброта</b>, перетином яких є всі нероздільні
+            результати Жюлія. Ґенеруються вони також схожим способом до множини Мандельброта, проте в формулі
+            <b>z<sub>n+1</sub> = z<sub>n</sub><sup>2</sup> + c</b>, параметр <b>c</b> є константою, а <b>z</b> -
+            точкою на площині.`)
+        .addImage('./img/juliaSet1.gif', 'julia set illustration')
+        .addText(`<b>Ґастон Жюлія</b> народився у <b>19 столітті</b> й вивчав поліноми та раціональні функції. Його
+            здобутки були забуті, допоки у <b>1970</b> <b>Бенуа Мандельброт</b> не зґенерував множини Жюлія
+            комп'ютерно.`)
+        .addImages(['./img/juliaSet2.png', './img/juliaSet3.jpg'], ['julia set real-life illustration pt.1', 'julia set real-life illustration pt.2'])
+        .build()
+
+    document.getElementById('help-button').addEventListener('click', () => help.open(isDragon ? 0 : 1))
+
+    document.getElementById('exit-help-button').addEventListener('click', () => {
+        help.quit()
+        onResize()
+    })
+});

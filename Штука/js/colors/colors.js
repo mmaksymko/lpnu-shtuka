@@ -64,37 +64,29 @@ setPixelsInfo = (rgba) => {
     rgbValues.style.color = hslValues.style.color = (hsl[2] < 40) ? 'white' : 'black'
 }
 
-let currHelpPage
-helpPages = document.getElementsByClassName('colors-help')
-helpFooters = document.querySelectorAll('.help-footer>span')
+window.addEventListener("load", (event) => {
+    let help = new HelpBuilder(document.querySelector('body'), document.getElementsByClassName('page-container')[0])
+        .addPage(`Хочете дізнатись більше про <b>RGB</b>? <b><u><a href="https://www.colorsexplained.com/rgb-color-model/">Тисніть!</a></u></b>`)
+        .addText(`<b>RGB</b> <b><i>(Red, Green, Blue — червоний, зелений, синій)</b></i> — колірна модель, що описує
+            спосіб змішання кольору, за яким <b>червоне</b>, <b>зелене</b> та <b>синє</b> світло накладаються разом,
+            змішуючись у різноманітні кольори. Перше зображення на ілюстрації отримано накладанням наступних трьох.`)
+        .addImages(['./img/color-model-example.png', './img/rgb-red-example.png', './img/rgb-green-example.png', './img/rgb-blue-example.png'], ['rgb combine example', 'rgb red example', 'rgb green example', 'rgb blue example'])
+        .addText(`Модель <b>RGB</b> залежна від пристроїв відображення, себто на різних пристроях кольори можуть
+            <b>різнитись</b>, адже залежні від елементів відтворення. Типовими </i>вхідними</i> <b>RGB</b>
+            пристроями є ТБ, відеокамери, сканери, </i>вихідними</i> - дисплеї різних технологій (CRT, LCD, плазма, OLED тощо)`)
+        .addImages(['./img/rgb1.jpg', './img/rgb2.webp'], ['rgb example', 'rgb example'])
+        .addNavigation()
+        .addPage(`Хочете дізнатись більше про <b>HSL</b>? <b><u><a href="https://giggster.com/guide/basics/hue-saturation-lightness/">Тисніть!</a></u></b>`)
+        .addText(`<b>HSL</b> <b><i>(Hue, Saturation, Lightness - відтінок, насиченість, світлість)</b></i> - циліндрична
+           колірна модель, що переводить точки з <b>RGB</b> в більш <b>інтуїтивну</b> для людини систему.`)
+        .addImages(['./img/hsl1.png', './img/hsl2 (rgb2hsl).gif'], ['rgb to hsl', 'rgb to hsl'])
+        .addText(`<b>Відтінок</b> - кут кольору на колі RGB <i>(0 - червоний, 120 - зелений, 240 - синій)</i> <br>
+            <b>Насиченість</b> контролює кількість використаного кольору`)
+        .addLineBreak()
+        .addText(`<b>Освітленість</b> ж показує світлість кольору <i>(0 - чорний, 50 - найчистіший колір, 100 - білий)</i>`)
+        .addImages(['./img/color-model-example.png', './img/hsl-hue-example.jpg', './img/hsl-saturation-example.jpg', './img/hsl-light-example.jpg'], ['hsl combine example', 'hsl hue example', 'hsl saturation example', 'hsl lightness example'])
+        .addNavigation().build()
 
-document.getElementById('colors-help-button').addEventListener('click', () => {
-    document.getElementsByClassName('page-container')[0].style.display = 'none'
-    document.getElementsByClassName('help-container')[0].style.display = 'flex'
-    helpPages[0].style.display = helpFooters[0].style.display = 'flex'
-    currHelpPage = 0
-})
-
-document.getElementById('prev-help-button').addEventListener('click', () => {
-    helpPages[currHelpPage].style.display = helpFooters[currHelpPage].style.display = 'none'
-
-    if (helpPages.length === ++currHelpPage)
-        currHelpPage = 0
-
-    helpPages[currHelpPage].style.display = helpFooters[currHelpPage].style.display = 'flex'
-})
-
-document.getElementById('next-help-button').addEventListener('click', () => {
-    helpPages[currHelpPage].style.display = helpFooters[currHelpPage].style.display = 'none'
-
-    if (--currHelpPage === -1)
-        currHelpPage = helpPages.length - 1
-
-    helpPages[currHelpPage].style.display = helpFooters[currHelpPage].style.display = 'flex'
-})
-
-document.getElementById('exit-help-button').addEventListener('click', () => {
-    document.getElementsByClassName('help-container')[0].style.display = 'none'
-    document.getElementsByClassName('page-container')[0].style.display = 'flex'
-    helpPages[currHelpPage].style.display = helpFooters[currHelpPage].style.display = 'none'
-})
+    document.getElementById('help-button').addEventListener('click', () => help.open(0))
+    document.getElementById('exit-help-button').addEventListener('click', () => help.quit())
+});
