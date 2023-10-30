@@ -12,18 +12,10 @@ class HelpBuilder {
                 <a href="index.html"><b>ШТУКА-ПОМІЧНА</b></a>
             </text>
             <div class="svg-button-container" id="exit-help-button" title="Повернутись до попередньої сторінки">
-                <svg width="3.5rem" class="svg-button exit-help-button" viewBox="2 2 20 30"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <g>
-                        <path id="svg_1" stroke-linejoin="round" stroke-linecap="round" stroke-width="2"
-                            stroke="#000000"
-                            d="m21,12c0,4.9706 -4.0294,9 -9,9c-4.97056,0 -9,-4.0294 -9,-9c0,-4.97056 4.02944,-9 9,-9c4.9706,0 9,4.02944 9,9z" />
-                        <g>
-                            <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#000000"
-                                d="m9.5,9.4185l5,5m0,-5l-5,5" />
-                        </g>
-                    </g>
-                </svg>
+                <svg class="svg-button exit-help-button" width="3.5em" viewBox="2 2 20 30" xmlns="http://www.w3.org/2000/svg">
+                    <path d="m21 12c0 4.9706-4.0294 9-9 9-4.9706 0-9-4.0294-9-9 0-4.9706 4.0294-9 9-9 4.9706 0 9 4.0294 9 9z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                    <path d="m9.5 9.4185 5 5m0-5-5 5" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                </svg>    
             </div>`
         this.mains = []
         this.footers = []
@@ -103,20 +95,16 @@ class HelpBuilder {
             this.#prevHelp.title = 'Попередня сторінка допомоги'
             this.#prevHelp.classList.add('svg-button-container')
             this.#prevHelp.innerHTML = `
-            <svg width="3.5rem" class="svg-button help-nav-page-button prev" viewBox="2 2 21 20" fill="none">
-                <path
-                d="M11 9L8 12M8 12L11 15M8 12H16M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
-                stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <svg class="svg-button help-nav-page-button prev" width="3.5em" fill="none" viewBox="2 2 21 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="m11 9-3 3m0 0 3 3m-3-3h8m5 0c0 4.9706-4.0294 9-9 9-4.9706 0-9-4.0294-9-9 0-4.9706 4.0294-9 9-9 4.9706 0 9 4.0294 9 9z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
             </svg>`
             this.#nextHelp = document.createElement('div')
             this.#nextHelp.setAttribute("id", "next-help-button");
             this.#nextHelp.title = 'Наступна сторінка допомоги'
             this.#nextHelp.classList.add('svg-button-container')
             this.#nextHelp.innerHTML = `
-            <svg width="3.5rem" class="svg-button help-nav-page-button next" viewBox="2 2 21 20" fill="none">
-                    <path
-                        d="M13 15L16 12M16 12L13 9M16 12H8M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
-                        stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <svg class="svg-button help-nav-page-button next" width="3.5em" fill="none" viewBox="2 2 21 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="m13 15 3-3m0 0-3-3m3 3h-8m13 0c0 4.9706-4.0294 9-9 9-4.9706 0-9-4.0294-9-9 0-4.9706 4.0294-9 9-9 4.9706 0 9 4.0294 9 9z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
             </svg>`
             prev = this.#prevHelp
             next = this.#nextHelp
