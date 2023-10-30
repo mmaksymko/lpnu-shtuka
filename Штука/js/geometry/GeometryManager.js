@@ -70,12 +70,12 @@ class GeometryManager {
 
         const NUMBER_LINE_DASH_DIVISOR = 5
         const TEXT_SIZE = 14
-        textSize(TEXT_SIZE);
         stroke('black')
 
         this.maxVisible.x = this.quantity.x - 1 - this.middle.x;
         this.minVisible.x = 2 - this.middle.x;
         for (let x = 2; x < this.quantity.x; x += this.scale) {
+            textSize(TEXT_SIZE);
             if (x === this.middle.x) {
                 new Stroke(
                     new Point(this.#getXCoordinate(this.middle.x), this.cellDimension),
@@ -83,6 +83,10 @@ class GeometryManager {
                 ).draw()
                 fill('black')
                 triangle(this.#getXCoordinate(this.middle.x) - this.PADDING / 2, Math.max(this.cellDimension, this.PADDING), this.#getXCoordinate(this.middle.x) + this.PADDING / 2, Math.max(this.cellDimension, this.PADDING), this.#getXCoordinate(this.middle.x), Math.max(this.cellDimension - this.PADDING, 0));
+                strokeWeight(1)
+                textSize(20)
+                text('y', this.#getXCoordinate(this.middle.x) - this.PADDING * 1.35, Math.max(this.cellDimension, this.PADDING - 2.5))
+                strokeWeight(2);
             }
 
             new Stroke(
@@ -104,6 +108,7 @@ class GeometryManager {
         this.maxVisible.y = this.middle.y - 2;
         this.minVisible.y = this.middle.y - this.quantity.y + 1;
         for (let y = 2; y < this.quantity.y; y += this.scale) {
+            textSize(TEXT_SIZE);
             if (y === this.middle.y) {
                 new Stroke(
                     new Point(this.cellDimension, this.#getYCoordinate(this.middle.y)),
@@ -112,6 +117,10 @@ class GeometryManager {
                 fill('black')
 
                 triangle(Math.min(this.resolution.x - this.cellDimension, this.resolution.x - this.PADDING), this.#getYCoordinate(this.middle.y) + this.PADDING / 2, Math.min(this.resolution.x - this.cellDimension, this.resolution.x - this.PADDING), this.#getYCoordinate(this.middle.y) - this.PADDING / 2, Math.min(this.resolution.x - this.cellDimension + this.PADDING, this.resolution.x), this.#getYCoordinate(this.middle.y));
+                strokeWeight(1)
+                textSize(20)
+                text('x', Math.min(this.resolution.x - this.cellDimension, this.resolution.x - this.PADDING), this.#getYCoordinate(this.middle.y) - this.PADDING * 0.75)
+                strokeWeight(2);
             }
 
             new Stroke(
@@ -131,7 +140,8 @@ class GeometryManager {
                 strokeWeight(8);
                 point(this.#getXCoordinate(this.middle.x), this.#getYCoordinate(this.middle.y))
                 strokeWeight(1);
-                text(y - this.middle.y, this.#getXCoordinate(this.middle.x) + this.cellDimension / NUMBER_LINE_DASH_DIVISOR / 2, this.#getYCoordinate(y) + TEXT_SIZE)
+                textSize(TEXT_SIZE + 2);
+                text(y - this.middle.y, this.#getXCoordinate(this.middle.x) + this.cellDimension / NUMBER_LINE_DASH_DIVISOR / 2 + 1, this.#getYCoordinate(y) + TEXT_SIZE * 1.35)
                 strokeWeight(2);
             }
         }
@@ -142,6 +152,9 @@ class GeometryManager {
             this.drawTriangle()
             this.scaling = 1
             pop()
+            strokeWeight(1);
+            stroke('black')
+            text(`A(${this.triangle.a.x * this.scalingFactor};${this.triangle.a.y * this.scalingFactor}), B(${this.triangle.b.x * this.scalingFactor};${this.triangle.b.y * this.scalingFactor}), C(${this.triangle.c.x * this.scalingFactor};${this.triangle.c.y * this.scalingFactor})`, this.PADDING, this.PADDING)
         }
     }
 
@@ -158,7 +171,6 @@ class GeometryManager {
         strokeWeight(2);
         stroke(53, 130, 15)
         fill(53, 130, 15, 30)
-
         this.triangle = tri
 
         let scale = 2 / this.scaling
@@ -169,10 +181,8 @@ class GeometryManager {
         point(this.#getCellX(tri.a.x), this.#getCellY(tri.a.y))
         point(this.#getCellX(tri.b.x), this.#getCellY(tri.b.y))
         point(this.#getCellX(tri.c.x), this.#getCellY(tri.c.y))
-        strokeWeight(2);
+        console.log(tri.getArea())
         pop()
-
-        // pop()
     }
 
     mirrorAndScale = (scaleFactor) => {

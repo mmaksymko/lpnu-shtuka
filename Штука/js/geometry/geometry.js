@@ -30,6 +30,10 @@ function draw() {
     noLoop()
 }
 
+
+let scaleDownButton = document.getElementById('scale-down-button')
+let scaleUpButton = document.getElementById('scale-up-button')
+
 document.getElementById('scale-down-button').addEventListener('click', () => {
     [minX, maxX, minY, maxY] = [geometryManager.min.x, geometryManager.max.x, geometryManager.min.y, geometryManager.max.y]
 
@@ -42,6 +46,7 @@ document.getElementById('scale-down-button').addEventListener('click', () => {
 })
 
 document.getElementById('scale-up-button').addEventListener('click', () => {
+    let startMaxX = maxX, startMaxY = maxY, startMinX = minX, startMinY = minY
     for (let i = 0; i < geometryManager.scale; ++i) {
         if (maxX - minX - 1 != 0) {
             minX += 1
@@ -57,21 +62,16 @@ document.getElementById('scale-up-button').addEventListener('click', () => {
         }
     }
     onResize()
+    return !(startMaxX === maxX && startMaxY === maxY && startMinX === minX && startMinY === minY)
 })
 
 document.getElementById('generate-triangle-button').addEventListener('click', () => {
-    let inputs = [20, 10, 1, 5, 3, 7]
-    geometryManager.scalingFactor = 1
-    geometryManager.drawTriangle(new Triangle(inputs[0], inputs[1], inputs[2], inputs[3], inputs[4], inputs[5]))
-    scaleToFit()
-    onResize()
-    return
-    // let inputs = document.getElementsByClassName("triangle-axis-point")
+    let inputs = document.getElementsByClassName("triangle-axis-point")
     for (let input of inputs)
         if (!input.value)
             return
     geometryManager.drawTriangle(new Triangle(inputs[0].value, inputs[1].value, inputs[2].value, inputs[3].value, inputs[4].value, inputs[5].value))
-    onResize()
+    scaleToFit()
 })
 
 document.getElementById('translate-button').addEventListener('click', (e) => {
@@ -91,7 +91,15 @@ scaleToFit = () => {
     let maxY = Math.max(geometryManager.triangle.a.y, geometryManager.triangle.b.y, geometryManager.triangle.c.y) * geometryManager.scalingFactor
     let minX = Math.min(geometryManager.triangle.a.x, geometryManager.triangle.b.x, geometryManager.triangle.c.x) * geometryManager.scalingFactor
     let minY = Math.min(geometryManager.triangle.a.y, geometryManager.triangle.b.y, geometryManager.triangle.c.y) * geometryManager.scalingFactor
-    while (geometryManager.maxVisible.x < maxX || geometryManager.maxVisible.y < maxY || geometryManager.minVisible.x > minX || geometryManager.minVisible.y > minY) {
-        document.getElementById('scale-down-button').click()
+
+    while (geometryManager.maxVisible.x > maxX && geometryManager.maxVisible.y > maxY && geometryManager.minVisible.x < minX && geometryManager.minVisible.y < minY) {
+        if (!scaleUpButton.click())
+            break
     }
+
+    while (geometryManager.maxVisible.x < maxX || geometryManager.maxVisible.y < maxY || geometryManager.minVisible.x > minX || geometryManager.minVisible.y > minY) {
+        scaleDownButton.click()
+    }
+
+    scaleDownButton.click()
 }

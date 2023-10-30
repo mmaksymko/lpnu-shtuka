@@ -14,17 +14,18 @@ class Triangle {
         this.c.y *= -1
     }
 
-    #dist = (a, b) => Math.sqrt((b.x - a.x) ** 2 + (b.y - a.y) ** 2)
+    #dist = (A, B) => Math.sqrt((B.x - A.x) ** 2 + (B.y - A.y) ** 2)
 
-    getTriangleArea = () => {
+    getArea = () => {
         if (!this.a.x)
             return 0
 
-        let a = this.#dist(aX, aY, bX, bY)
-        let b = this.#dist(bX, bY, cX, cY)
-        let c = this.#dist(cX, cY, aX, aY)
-        let p = (a + b + c) / 2
-        return Math.sqrt(p * (p - a) * (p - b) * (p - c))
+        let A = Math.sqrt((this.b.x - this.a.x) ** 2 + (this.b.y - this.a.y) ** 2)
+        let B = Math.sqrt((this.b.x - this.c.x) ** 2 + (this.b.y - this.c.y) ** 2)
+        let C = Math.sqrt((this.c.x - this.a.x) ** 2 + (this.c.y - this.a.y) ** 2)
+
+        let p = (A + B + C) / 2
+        return Math.sqrt(p * (p - A) * (p - B) * (p - C))
     }
 
 }
