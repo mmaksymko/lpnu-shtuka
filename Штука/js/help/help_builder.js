@@ -57,6 +57,15 @@ class HelpBuilder {
         return this
     }
 
+    addDemonstartion = (src, alt = 'demonstration') => {
+        let helpImage = document.createElement('img')
+        helpImage.classList.add('demonstration')
+        helpImage.src = src
+        helpImage.alt = alt
+        this.mains[this.mains.length - 1].append(helpImage)
+        return this
+    }
+
     addImage = (src, alt) => {
         let helpImage = document.createElement('img')
         if (src.slice(-3) === 'gif')

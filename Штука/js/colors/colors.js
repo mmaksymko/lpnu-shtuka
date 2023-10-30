@@ -66,6 +66,10 @@ setPixelsInfo = (rgba) => {
 
 window.addEventListener("load", (event) => {
     let help = new HelpBuilder(document.querySelector('body'), document.getElementsByClassName('page-container')[0])
+        .addPage(``)
+        .addText(`<b>Демонстрація</b>`)
+        .addDemonstartion('./img/colors_demo.gif')
+        .addNavigation()
         .addPage(`Хочете дізнатись більше про <b>RGB</b>? <b><u><a href="https://www.colorsexplained.com/rgb-color-model/">Тисніть!</a></u></b>`)
         .addText(`<b>RGB</b> <b><i>(Red, Green, Blue — червоний, зелений, синій)</b></i> — колірна модель, що описує
             спосіб змішання кольору, за яким <b>червоне</b>, <b>зелене</b> та <b>синє</b> світло накладаються разом,

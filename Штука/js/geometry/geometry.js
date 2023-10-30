@@ -130,6 +130,10 @@ document.getElementById('save-button').addEventListener('click', () => saveCanva
 
 window.addEventListener("load", (event) => {
     let help = new HelpBuilder(document.querySelector('body'), document.getElementsByClassName('page-container')[0])
+        .addPage(``)
+        .addText(`<b>Демонстрація</b>`)
+        .addDemonstartion('./img/geometry_demo.gif')
+        .addNavigation()
         .addPage(`Хочете дізнатись більше про <b>RGB</b>? <b><u><a href="https://www.colorsexplained.com/rgb-color-model/">Тисніть!</a></u></b>`)
         .addText(`<b>Афінне перетворення</b> <b><i>(лат. affinis, «пов'язаний з»)</i></b> — відображення площини або простору в собі, при якому <b>паралельні</b> прямі переходять у <b>паралельні</b> прямі, <b>пересічні</b> — в <b>пересічні</b>, <b>мимобіжні</b> — в <b>мимобіжні</b>.`)
         .addImage('./img/affineTransofrmations.png', 'affine tranformations')

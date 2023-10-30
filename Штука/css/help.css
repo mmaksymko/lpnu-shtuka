@@ -49,3 +49,8 @@
     width: auto;
     margin: 1rem auto;
 }
+
+.demonstration {
+    margin: auto;
+    max-width: 880px
+}

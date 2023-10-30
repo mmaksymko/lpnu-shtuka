@@ -97,8 +97,6 @@ button {
     justify-content: space-evenly;
     padding: 0;
     flex-wrap: nowrap;
-    /* margin-bottom: 0.5rem; */
-    /* margin-bottom: 0.25rem; */
 }
 
 @media (width<763px) {

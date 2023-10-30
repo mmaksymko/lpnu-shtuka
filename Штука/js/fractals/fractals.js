@@ -113,7 +113,11 @@ document.getElementById('color-scheme-select').addEventListener('change', (event
 
 
 window.addEventListener("load", (event) => {
-    let help = new HelpBuilder(document.querySelector('body'), document.getElementsByClassName('page-container')[0])
+    let dragonHelp = new HelpBuilder(document.querySelector('body'), document.getElementsByClassName('page-container')[0])
+        .addPage(``)
+        .addText(`<b>Демонстрація</b>`)
+        .addDemonstartion('./img/fractals_demo.gif')
+        .addNavigation()
         .addPage(`Хочете дізнатись більше інформації про фрактал? <b><u><a href="https://larryriddle.agnesscott.org/ifs/heighway/heighway.htm">Тисніть!</a></u></b>`)
         .addText(`<b>Крива дракона</b> <i>(також відома як фрактал <b>Гартера-Гейвея</b>)</i> - фрактал, який зображається
             наступним чином: починаючи з <b>базового сегмента</b>, кожен сегмент <b>замінюється</b> двома сегментами
@@ -123,6 +127,13 @@ window.addEventListener("load", (event) => {
             полоску паперу <b>навпіл</b>, <b>знову</b> в тім ж напрямку і так <b>n разів</b>. Розкривши зігнутий
             папір так, що всі згини під <b>прямим кутом</b> він отримав <b>дракона n-ного порядку</b>.`)
         .addImages(['./img/dragonCurve2.png', './img/dragonCurve3.png'], ['dragon curve real-life illustration pt.1', 'dragon curve real-life illustration pt.2'])
+        .addNavigation()
+        .build()
+    let juliaHelp = new HelpBuilder(document.querySelector('body'), document.getElementsByClassName('page-container')[0])
+        .addPage(``)
+        .addText(`<b>Демонстрація</b>`)
+        .addDemonstartion('./img/fractals_demo.gif')
+        .addNavigation()
         .addPage(` Хочете дізнатись більше інформації про фрактал? <b><u><a href="hhttps://fractalsaco.weebly.com/julia-set.html">Тисніть!</a></u></b> (або <b><u><a href="https://pi.math.cornell.edu/~klindsey/presentations/MandelbrotReport.pdf"> сюди)</a></u></b> `)
         .addText(`<b>Множини Жюлія</b> є надмножиною <b>множин Мандельброта</b>, перетином яких є всі нероздільні
             результати Жюлія. Ґенеруються вони також схожим способом до множини Мандельброта, проте в формулі
@@ -133,12 +144,12 @@ window.addEventListener("load", (event) => {
             здобутки були забуті, допоки у <b>1970</b> <b>Бенуа Мандельброт</b> не зґенерував множини Жюлія
             комп'ютерно.`)
         .addImages(['./img/juliaSet2.png', './img/juliaSet3.jpg'], ['julia set real-life illustration pt.1', 'julia set real-life illustration pt.2'])
+        .addNavigation()
         .build()
 
-    document.getElementById('help-button').addEventListener('click', () => help.open(isDragon ? 0 : 1))
-
+    document.getElementById('help-button').addEventListener('click', () => isDragon ? dragonHelp.open() : juliaHelp.open())
     document.getElementById('exit-help-button').addEventListener('click', () => {
-        help.quit()
+        juliaHelp.quit()
         onResize()
     })
 });
