@@ -43,7 +43,6 @@ document.getElementById('scale-down-button').addEventListener('click', () => {
 })
 
 document.getElementById('scale-up-button').addEventListener('click', () => {
-    let startMaxX = maxX, startMaxY = maxY, startMinX = minX, startMinY = minY
     for (let i = 0; i < geometryManager.scale; ++i) {
         if (maxX - minX - 1 != 0) {
             minX += 1
@@ -59,24 +58,20 @@ document.getElementById('scale-up-button').addEventListener('click', () => {
         }
     }
     onResize()
-    return !(startMaxX === maxX && startMaxY === maxY && startMinX === minX && startMinY === minY)
 })
 
 scaleToFit = () => {
-    let maxX = Math.max(geometryManager.triangle.a.x, geometryManager.triangle.b.x, geometryManager.triangle.c.x) * geometryManager.scalingFactor
-    let maxY = Math.max(geometryManager.triangle.a.y, geometryManager.triangle.b.y, geometryManager.triangle.c.y) * geometryManager.scalingFactor
-    let minX = Math.min(geometryManager.triangle.a.x, geometryManager.triangle.b.x, geometryManager.triangle.c.x) * geometryManager.scalingFactor
-    let minY = Math.min(geometryManager.triangle.a.y, geometryManager.triangle.b.y, geometryManager.triangle.c.y) * geometryManager.scalingFactor
+    let maxX = Math.max(geometryManager.triangle.a.x, geometryManager.triangle.b.x, geometryManager.triangle.c.x)
+    let maxY = Math.max(geometryManager.triangle.a.y, geometryManager.triangle.b.y, geometryManager.triangle.c.y)
+    let minX = Math.min(geometryManager.triangle.a.x, geometryManager.triangle.b.x, geometryManager.triangle.c.x)
+    let minY = Math.min(geometryManager.triangle.a.y, geometryManager.triangle.b.y, geometryManager.triangle.c.y)
 
-    while (geometryManager.maxVisible.x > maxX && geometryManager.maxVisible.y > maxY && geometryManager.minVisible.x < minX && geometryManager.minVisible.y < minY) {
-        if (!scaleUpButton.click())
-            break
+    while (geometryManager.maxVisible.x > maxX && geometryManager.maxVisible.y > maxY && geometryManager.minVisible.x < minX && geometryManager.minVisible.y < minY && geometryManager.maxVisible.x > 15 && geometryManager.maxVisible.y > 6) {
+        scaleUpButton.click()
     }
     while (geometryManager.maxVisible.x < maxX || geometryManager.maxVisible.y < maxY || geometryManager.minVisible.x > minX || geometryManager.minVisible.y > minY) {
         scaleDownButton.click()
     }
-
-    scaleDownButton.click()
 }
 
 printError = (error) => alert(error)

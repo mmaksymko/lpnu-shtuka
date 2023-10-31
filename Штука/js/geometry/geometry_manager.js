@@ -1,36 +1,24 @@
 class GeometryManager {
     constructor(width, height) {
         this.SCALING_RATE = 25
-        this.scale = this.cellDimension = null
-        this.min = new Point(null, null)
-        this.max = new Point(null, null)
+        this.scale = this.cellDimension = this.triangle = null
         this.middle = new Point(null, null)
-        this.minVisible = new Point(null, null)
-        this.maxVisible = new Point(null, null)
-        this.quantity = new Point(null, null)
-        this.resolution = new Point(width, height)
         this.PADDING = 15
-        this.scaling = this.scalingFactor = 1
-        this.triangle = null
     }
 
     drawGrid = (minX = this.min.x, maxX = this.max.x, minY = this.min.y, maxY = this.max.y, width = this.resolution.x, height = this.resolution.y) => {
-        if (min.x > max.x || min.y > max.y)
+        if (minX > maxX || minY > maxY)
             return
         clear()
         background('white')
-        this.min.x = minX
-        this.max.x = maxX
-        this.min.y = minY
-        this.max.y = maxY
-        this.resolution.x = width
-        this.resolution.y = height
+        this.min = new Point(minX, minY)
+        this.max = new Point(maxX, maxY)
+        this.resolution = new Point(width, height)
         strokeWeight(2)
         stroke('rgb(224, 224, 224)')
 
         this.cellDimension = Math.min(this.resolution.x / (this.max.x - this.min.x + 4), this.resolution.y / (this.max.y - this.min.y + 4)) * 0.95
-        this.quantity.x = Math.ceil((this.resolution.x - 2 * this.PADDING) / this.cellDimension - 1)
-        this.quantity.y = Math.ceil((this.resolution.y - 2 * this.PADDING) / this.cellDimension - 1)
+        this.quantity = new Point(Math.ceil((this.resolution.x - 2 * this.PADDING) / this.cellDimension - 1), Math.ceil((this.resolution.y - 2 * this.PADDING) / this.cellDimension - 1))
         this.scale = Math.max(int(this.quantity.x / this.SCALING_RATE) + 1, int(this.quantity.y / this.SCALING_RATE) + 1)
 
         let passedMiddle = false, foundPlace = false
@@ -67,13 +55,13 @@ class GeometryManager {
                 new Point(Math.min(this.resolution.x - this.cellDimension, this.resolution.x - this.PADDING * 0.5), this.#getYCoordinate(y)),
             ).draw()
         }
+        this.maxVisible = new Point(this.quantity.x - 1 - this.middle.x, this.middle.y - 2)
+        this.minVisible = new Point(2 - this.middle.x, this.middle.y - this.quantity.y + 1);
 
         const NUMBER_LINE_DASH_DIVISOR = 5
         const TEXT_SIZE = 14
         stroke('black')
 
-        this.maxVisible.x = this.quantity.x - 1 - this.middle.x;
-        this.minVisible.x = 2 - this.middle.x;
         for (let x = 2; x < this.quantity.x; x += this.scale) {
             textSize(TEXT_SIZE);
             if (x === this.middle.x) {
@@ -109,8 +97,6 @@ class GeometryManager {
             strokeWeight(2);
         }
 
-        this.maxVisible.y = this.middle.y - 2;
-        this.minVisible.y = this.middle.y - this.quantity.y + 1;
         for (let y = 2; y < this.quantity.y; y += this.scale) {
             textSize(TEXT_SIZE);
             if (y === this.middle.y) {
@@ -154,36 +140,29 @@ class GeometryManager {
                 strokeWeight(2);
             }
         }
+        textSize(TEXT_SIZE / 1.25);
         if (this.triangle) {
-            push()
-            this.scaling = this.scalingFactor
-            scale(this.scaling, this.scaling)
             this.drawTriangle()
-            this.scaling = 1
-            pop()
             strokeWeight(1);
             stroke('black')
-            textSize(TEXT_SIZE / 1.25);
-            text(this.triangle.toString(this.scalingFactor), this.PADDING, this.PADDING)
+            text(this.triangle.toString(), this.PADDING, this.PADDING)
         }
     }
 
-    #addXPadding = (x) => (x + this.PADDING * 1.25) / this.scaling
-    #addYPadding = (y) => (y + this.PADDING * 1.5) / this.scaling
+    #addXPadding = (x) => (x + this.PADDING * 1.25)
+    #addYPadding = (y) => (y + this.PADDING * 1.5)
     #getXCoordinate = (x) => this.#addXPadding(this.cellDimension * x)
     #getYCoordinate = (y) => this.#addYPadding(this.cellDimension * y)
     #getCellX = (x) => this.#getXCoordinate(this.middle.x) + this.cellDimension * x
     #getCellY = (y) => this.#getYCoordinate(this.middle.y) - this.cellDimension * y
 
     drawTriangle = (tri = this.triangle) => {
-        push()
-
         strokeWeight(2);
         stroke(53, 130, 15)
         fill(53, 130, 15, 30)
         this.triangle = tri
 
-        let scale = 2 / this.scaling
+        let scale = 2
         strokeWeight(scale);
         triangle(this.#getCellX(tri.a.x), this.#getCellY(tri.a.y), this.#getCellX(tri.b.x), this.#getCellY(tri.b.y), this.#getCellX(tri.c.x), this.#getCellY(tri.c.y))
 
@@ -191,7 +170,6 @@ class GeometryManager {
         point(this.#getCellX(tri.a.x), this.#getCellY(tri.a.y))
         point(this.#getCellX(tri.b.x), this.#getCellY(tri.b.y))
         point(this.#getCellX(tri.c.x), this.#getCellY(tri.c.y))
-        pop()
     }
 
     mirrorAndScale = (scaleFactor) => {
@@ -199,9 +177,14 @@ class GeometryManager {
             return
 
         clear()
-        this.scalingFactor *= scaleFactor
         this.triangle.mirror()
+        this.triangle.scale(scaleFactor)
         this.drawGrid()
+    }
+
+    static multiplyMatrices = (a, b) => {
+        let result = a.map((row, i) => b[0].map((_, j) => row.reduce((acc, _, n) => acc + a[i][n] * b[n][j], 0)))
+        return result.length !== 1 ? result : result[0]
     }
 
     #triangles = [
