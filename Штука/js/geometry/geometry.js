@@ -85,7 +85,7 @@ document.getElementById('generate-triangle-button').addEventListener('click', ()
     let inputs = document.getElementsByClassName("triangle-axis-point")
     for (let input of inputs)
         if (!input.value) {
-            printError('Введіть валідні чисельні дані!')
+            printError('Введіть валідні чисельні дані! Можливо ви ввели літеру або інший нецифровий символ.')
             return
         } else if (input.value > Math.abs(50_000_000)) {
             printError('Ви вийшли за рамки, далі обчислення були б заповільними! Рекомендуємо зменшити трикутника (вводячи як коефіцієнт зібльшення значення в межах (0; 1) або зґенерувати нового!')
@@ -110,12 +110,12 @@ document.getElementById('random-triangle-button').addEventListener('click', () =
 
 document.getElementById('translate-button').addEventListener('click', (e) => {
     if (!document.getElementById('triangle-scale').value) {
-        printError('Введіть валідні дані!')
+        printError('Введіть валідні дані! Поле порожнє або містить не цифрові символи.')
         return
     }
     let factor = document.getElementById('triangle-scale').value
     if (factor <= 0) {
-        printError('Трикутник не може мати від\'ємної площі!')
+        printError('Трикутник не може мати від\'ємної площі! Введіть додатнє значення.')
         return
     }
     if (Math.max(factor * Math.abs(geometryManager.maxVisible.x), factor * Math.abs(geometryManager.maxVisible.y), factor * Math.abs(geometryManager.minVisible.x), factor * Math.abs(geometryManager.minVisible.y)) > 50_000_000) {

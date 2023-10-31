@@ -113,7 +113,8 @@ document.getElementById('color-scheme-select').addEventListener('change', (event
 
 
 window.addEventListener("load", (event) => {
-    let dragonHelp = new HelpBuilder(document.querySelector('body'), document.getElementsByClassName('page-container')[0])
+    let pageContainer = document.getElementsByClassName('page-container')[0]
+    let dragonHelp = new HelpBuilder(document.querySelector('body'), pageContainer)
         .addPage(``)
         .addText(`<b>Демонстрація</b>`)
         .addDemonstartion('./img/fractals_demo.gif')
@@ -129,7 +130,7 @@ window.addEventListener("load", (event) => {
         .addImages(['./img/dragonCurve2.png', './img/dragonCurve3.png'], ['dragon curve real-life illustration pt.1', 'dragon curve real-life illustration pt.2'])
         .addNavigation()
         .build()
-    let juliaHelp = new HelpBuilder(document.querySelector('body'), document.getElementsByClassName('page-container')[0])
+    let juliaHelp = new HelpBuilder(document.querySelector('body'), pageContainer)
         .addPage(``)
         .addText(`<b>Демонстрація</b>`)
         .addDemonstartion('./img/fractals_demo.gif')
@@ -146,10 +147,13 @@ window.addEventListener("load", (event) => {
         .addImages(['./img/juliaSet2.png', './img/juliaSet3.jpg'], ['julia set real-life illustration pt.1', 'julia set real-life illustration pt.2'])
         .addNavigation()
         .build()
-
     document.getElementById('help-button').addEventListener('click', () => isDragon ? dragonHelp.open() : juliaHelp.open())
-    document.getElementById('exit-help-button').addEventListener('click', () => {
-        juliaHelp.quit()
-        onResize()
-    })
+
+    for (let help of document.getElementsByClassName('exit-help-button'))
+        help.addEventListener('click', () => {
+            pageContainer.style.display = 'flex'
+            dragonHelp.quit()
+            juliaHelp.quit()
+            onResize()
+        })
 });

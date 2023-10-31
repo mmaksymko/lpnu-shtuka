@@ -11,7 +11,7 @@ class HelpBuilder {
             <text class="logo" title="ШТУКА навчає не лише візуально, а й дає трішки теорії!">
                 <a href="index.html"><b>ШТУКА-ПОМІЧНА</b></a>
             </text>
-            <div class="svg-button-container" id="exit-help-button" title="Повернутись до попередньої сторінки">
+            <div class="svg-button-container" id="exit-help-button" class="help-button" title="Повернутись до попередньої сторінки">
                 <svg class="svg-button exit-help-button" width="3.5em" viewBox="2 2 20 30" xmlns="http://www.w3.org/2000/svg">
                     <path d="m21 12c0 4.9706-4.0294 9-9 9-4.9706 0-9-4.0294-9-9 0-4.9706 4.0294-9 9-9 4.9706 0 9 4.0294 9 9z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
                     <path d="m9.5 9.4185 5 5m0-5-5 5" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
