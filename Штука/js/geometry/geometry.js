@@ -1,6 +1,5 @@
 
-let cnv
-let canvas = document.getElementById("canvas")
+let cnv, canvas = document.getElementById("canvas")
 
 let geometryManager
 
@@ -45,15 +44,15 @@ document.getElementById('scale-down-button').addEventListener('click', () => {
 document.getElementById('scale-up-button').addEventListener('click', () => {
     for (let i = 0; i < geometryManager.scale; ++i) {
         if (maxX - minX - 1 != 0) {
-            minX += 1
+            ++minX
             if (maxX - minX - 1 != 0) {
-                maxX -= 1
+                --maxX
             }
         }
         if (maxY - minY - 1 != 0) {
-            minY += 1
+            ++minY
             if (maxY - minY - 1 != 0) {
-                maxY -= 1
+                --maxY
             }
         }
     }
@@ -69,9 +68,10 @@ scaleToFit = () => {
     while (geometryManager.maxVisible.x > maxX && geometryManager.maxVisible.y > maxY && geometryManager.minVisible.x < minX && geometryManager.minVisible.y < minY && geometryManager.maxVisible.x > 15 && geometryManager.maxVisible.y > 6) {
         scaleUpButton.click()
     }
-    while (geometryManager.maxVisible.x < maxX || geometryManager.maxVisible.y < maxY || geometryManager.minVisible.x > minX || geometryManager.minVisible.y > minY) {
+    while (geometryManager.maxVisible.x + 1 < maxX || geometryManager.maxVisible.y + 1 < maxY || geometryManager.minVisible.x + 1 > minX || geometryManager.minVisible.y > minY) {
         scaleDownButton.click()
     }
+    scaleDownButton.click()
 }
 
 printError = (error) => alert(error)

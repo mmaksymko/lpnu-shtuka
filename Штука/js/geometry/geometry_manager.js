@@ -62,6 +62,7 @@ class GeometryManager {
         const TEXT_SIZE = 14
         stroke('black')
 
+        let text_size = this.minVisible.y - 2 < -1000000 ? TEXT_SIZE / 2 : this.minVisible.y - 2 < -100000 ? TEXT_SIZE / 1.75 : this.minVisible.y - 2 < -10000 ? TEXT_SIZE / 1.5 : TEXT_SIZE / 1.25
         for (let x = 2; x < this.quantity.x; x += this.scale) {
             textSize(TEXT_SIZE);
             if (x === this.middle.x) {
@@ -84,14 +85,7 @@ class GeometryManager {
 
             if (x !== this.middle.x) {
                 strokeWeight(1);
-                if (this.minVisible.x - 2 < -1000)
-                    textSize(TEXT_SIZE / 1.25)
-                if (this.minVisible.x - 2 < -10000)
-                    textSize(TEXT_SIZE / 1.5)
-                if (this.minVisible.x - 2 < -100000)
-                    textSize(TEXT_SIZE / 1.75)
-                if (this.minVisible.x - 2 < -1000000)
-                    textSize(TEXT_SIZE / 2)
+                textSize(text_size)
                 text(x - this.middle.x, this.#getXCoordinate(x) - TEXT_SIZE / 3, this.#getYCoordinate(this.middle.y) + this.cellDimension / NUMBER_LINE_DASH_DIVISOR * Math.ceil(this.quantity.x / 8.75))
             }
             strokeWeight(2);
@@ -120,15 +114,7 @@ class GeometryManager {
 
             if (y !== this.middle.y) {
                 strokeWeight(1);
-
-                if (this.minVisible.y - 2 < -1000000)
-                    textSize(TEXT_SIZE / 2)
-                else if (this.minVisible.y - 2 < -100000)
-                    textSize(TEXT_SIZE / 1.75)
-                else if (this.minVisible.y - 2 < -10000)
-                    textSize(TEXT_SIZE / 1.75)
-                else textSize(TEXT_SIZE / 1.25)
-
+                textSize(text_size)
                 text(' ' + this.middle.y - y, this.#getXCoordinate(this.middle.x) + this.cellDimension / NUMBER_LINE_DASH_DIVISOR + 8, this.#getYCoordinate(y) + TEXT_SIZE / 4)
                 strokeWeight(2);
             } else {
@@ -146,6 +132,7 @@ class GeometryManager {
             strokeWeight(1);
             stroke('black')
             text(this.triangle.toString(), this.PADDING, this.PADDING)
+            text(this.triangle.toMatrixString(), this.PADDING, height - this.PADDING * 2.5)
         }
     }
 
@@ -182,10 +169,7 @@ class GeometryManager {
         this.drawGrid()
     }
 
-    static multiplyMatrices = (a, b) => {
-        let result = a.map((row, i) => b[0].map((_, j) => row.reduce((acc, _, n) => acc + a[i][n] * b[n][j], 0)))
-        return result.length !== 1 ? result : result[0]
-    }
+    static multiplyMatrices = (a, b) => a.map((row, i) => b[0].map((_, j) => row.reduce((acc, _, n) => acc + a[i][n] * b[n][j], 0)))
 
     #triangles = [
         [-20, 30, 10, -40, 50, 10], [-60, -70, 0, 60, 70, -20], [-80, 20, 0, -90, 80, 40], [-30, 50, 30, 50, 0, -60], [-10, 20, 40, 10, -30, -50], [-50, -30, 60, 50, 20, -40], [-70, 40, 0, -30, 30, 60],
